@@ -1,0 +1,24 @@
+{
+	"*.php": [
+		"vendor/bin/phpstan analyse -c node_modules/@lform/code-dandy/phpstan.neon",
+		"vendor/bin/php-cs-fixer fix --verbose --config node_modules/@lform/code-dandy/.php-cs-fixer.php"
+	],
+	"*.{js,jsx,ts,tsx}": [
+		"node_modules/.bin/prettier --config node_modules/@lform/code-dandy/.prettierrc.json --ignore-path node_modules/@lform/code-dandy/.prettierignore --write",
+		"node_modules/.bin/eslint -c node_modules/@lform/code-dandy/.eslintrc.json --fix"
+	],
+	"*.{twig,blade.php}": [
+		"node_modules/.bin/prettier --config node_modules/@lform/code-dandy/.prettierrc.json --ignore-path node_modules/@lform/code-dandy/.prettierignore --write"
+	],
+	"*.{html,htm}": [
+		"node_modules/.bin/linthtml --config node_modules/@lform/code-dandy/.linthtmlrc.json",
+		"node_modules/.bin/prettier --config node_modules/@lform/code-dandy/.prettierrc.json --ignore-path node_modules/@lform/code-dandy/.prettierignore --write"
+	],
+	"*.{css,scss,pcss}": [
+		"node_modules/.bin/prettier --config node_modules/@lform/code-dandy/.prettierrc.json --ignore-path node_modules/@lform/code-dandy/.prettierignore --write",
+		"node_modules/.bin/stylelint --config node_modules/@lform/code-dandy/stylelint.json --ignore-path node_modules/@lform/code-dandy/stylelintignore --fix"
+	],
+	"*.{json,yml}": [
+		"node_modules/.bin/prettier --config node_modules/@lform/code-dandy/.prettierrc.json --ignore-path node_modules/@lform/code-dandy/.prettierignore --write"
+	]
+}

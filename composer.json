@@ -1,0 +1,22 @@
+{
+	"name": "lform/code-dandy",
+	"description": "Lform code style & linting configurations",
+	"version": "1.0.0",
+	"type": "packages",
+	"require": {
+		"php": ">=8.0",
+		"friendsofphp/php-cs-fixer": "^3.46",
+		"phpstan/phpstan": "^1.8"
+	},
+	"scripts": {
+		"format": "vendor/bin/php-cs-fixer fix --verbose --config vendor/lform/code-dandy/.php-cs-fixer.php",
+		"lint": "vendor/bin/phpstan analyse -c vendor/lform/code-dandy/phpstan.neon"
+	},
+	"bin": [
+		"bin/composer/code-dandy"
+	],
+	"support": {
+		"issues": "https://github.com/lform/code-dandy/issues",
+		"source": "https://github.com/lform/code-dandy"
+	}
+}

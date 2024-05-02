@@ -1,0 +1,67 @@
+{
+	"extends": ["stylelint-config-standard", "stylelint-config-standard-scss"],
+	"overrides": [
+		{
+			"files": [
+				"*.scss",
+				"**/*.scss",
+				"*.pcss",
+				"**/*.pcss"
+			],
+			"customSyntax": "postcss-scss"
+		}
+	],
+	"rules": {
+		"alpha-value-notation": "number",
+		"color-named": "never",
+		"declaration-property-unit-allowed-list": {
+			"font-size": ["em", "rem"],
+			"line-height": ["em", "number"]
+		},
+		"declaration-property-value-no-unknown": true,
+		"function-disallowed-list": ["rgb", "hwb", "lch"],
+		"max-nesting-depth": 4,
+		"media-feature-name-value-no-unknown": true,
+		"no-unknown-animations": true,
+		"no-unknown-custom-properties": true,
+		"number-max-precision": 3,
+		"selector-attribute-name-disallowed-list": ["/^js-/"],
+		"selector-max-id": 0,
+		"selector-class-pattern": [
+			"^([a-z][a-z0-9]*)(-[a-z0-9]+)*$",
+			{
+				"message": "Class names should be in kebab-case (lowercase-and-dashes)"
+			}
+		],
+		"selector-id-pattern": [
+			"^([a-z][a-z0-9]*)(-[a-z0-9]+)*$",
+			{
+				"message": "ID names should be in kebab-case (lowercase-and-dashes)"
+			}
+		],
+		"scss/at-function-pattern": [
+			"^[a-z0-9\\-]+$",
+			{
+				"message": "Function names should be in kebab-case (lowercase-and-dashes)"
+			}
+		],
+		"scss/at-mixin-pattern": [
+			"^[a-z0-9\\-]+$",
+			{
+				"message": "Mixin names should be in kebab-case (lowercase-and-dashes)"
+			}
+		],
+		"scss/dollar-variable-pattern": [
+			"^[a-z0-9\\-]+$",
+			{
+				"message": "Variable names should be in kebab-case (lowercase-and-dashes)"
+			}
+		],
+		"scss/percent-placeholder-pattern": [
+			"^[a-z0-9\\-]+$",
+			{
+				"message": "Placeholder names should be in kebab-case (lowercase-and-dashes)"
+			}
+		]
+	}
+}

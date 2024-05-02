@@ -1,0 +1,22 @@
+#!/bin/bash
+
+CURRENT_PATH=$(dirname "$0")
+PACKAGE_PATH=$(realpath "${CURRENT_PATH}/../..")
+BIN_PATH=${PACKAGE_PATH}/bin/npm
+ROOT_DIR=$(realpath "${PACKAGE_PATH}/../../..")
+
+case "${1}" in
+	init)
+        echo -e "Setting up Composer scripts..."
+		composer config scripts.format "vendor/bin/php-cs-fixer fix --verbose --config vendor/lform/code-dandy/.php-cs-fixer.php"
+		echo -e "Added Composer script: format"
+		composer config scripts.lint "vendor/bin/phpstan analyse -c vendor/lform/code-dandy/phpstan.neon"
+		echo -e "Added Composer script: lint"
+		echo -e "... Done."
+
+        echo "Setup complete."
+        ;;
+	*)
+		echo -e "Usage: code-dandy init"
+    	;;
+esac
