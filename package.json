@@ -2,6 +2,12 @@
 	"name": "@lform/code-dandy",
 	"version": "1.0.0",
 	"description": "Lform code style & lint configurations",
+	"author": "Lform Design",
+	"license": "MIT",
+	"homepage": "https://github.com/lform/code-dandy#readme",
+	"bugs": {
+		"url": "https://github.com/lform/code-dandy/issues"
+	},
 	"dependencies": {
 		"@linthtml/linthtml": "^0.9.6",
 		"@linthtml/linthtml-config-recommended": "^0.1.0",
@@ -22,9 +28,11 @@
 		"stylelint-config-standard-scss": "^13.0.0",
 		"stylelint-config-tailwindcss": "^0.0.7"
 	},
+	"main": "package.json",
+	"private": false,
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/lform/code-dandy.git"
+		"url": "git+https://github.com/lform/code-dandy.git"
 	},
 	"scripts": {
 		"format": "node_modules/.bin/prettier --config node_modules/@lform/code-dandy/.prettierrc.json --ignore-path node_modules/@lform/code-dandy/.prettierignore --write",
