@@ -1,6 +1,6 @@
 {
-	"name": "lform/code-dandy",
-	"description": "Lform code style & linting configurations",
+	"name": "lform/pretty-code",
+	"description": "Lform's centrally managed code style & linting configurations",
 	"version": "1.0.0",
 	"type": "packages",
 	"require": {
@@ -9,14 +9,14 @@
 		"phpstan/phpstan": "^1.8"
 	},
 	"scripts": {
-		"pretty:format": "vendor/bin/php-cs-fixer fix --verbose --config vendor/lform/code-dandy/.php-cs-fixer.php",
-		"pretty:lint": "vendor/bin/phpstan analyse -c vendor/lform/code-dandy/phpstan.neon"
+		"pretty:format": "vendor/bin/php-cs-fixer fix --verbose --config vendor/lform/pretty-code/.php-cs-fixer.php",
+		"pretty:lint": "vendor/bin/phpstan analyse -c vendor/lform/pretty-code/phpstan.neon"
 	},
 	"bin": [
-		"bin/composer/code-dandy"
+		"bin/composer/pretty-code"
 	],
 	"support": {
-		"issues": "https://github.com/lform/code-dandy/issues",
-		"source": "https://github.com/lform/code-dandy"
+		"issues": "https://github.com/lform/pretty-code/issues",
+		"source": "https://github.com/lform/pretty-code"
 	}
 }

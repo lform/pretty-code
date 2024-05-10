@@ -86,13 +86,13 @@ Afterward, these new files & changes should be committed to git once everything 
 #### NPM Initialization
 
 ```sh
-node_modules/.bin/code-dandy init
+node_modules/.bin/pretty-code init
 ```
 
 #### Composer Initialization
 
 ```sh
-vendor/bin/code-dandy init
+vendor/bin/pretty-code init
 ```
 #### Troubleshooting
 
