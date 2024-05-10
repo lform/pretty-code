@@ -9,8 +9,8 @@
 		"phpstan/phpstan": "^1.8"
 	},
 	"scripts": {
-		"format": "vendor/bin/php-cs-fixer fix --verbose --config vendor/lform/code-dandy/.php-cs-fixer.php",
-		"lint": "vendor/bin/phpstan analyse -c vendor/lform/code-dandy/phpstan.neon"
+		"pretty:format": "vendor/bin/php-cs-fixer fix --verbose --config vendor/lform/code-dandy/.php-cs-fixer.php",
+		"pretty:lint": "vendor/bin/phpstan analyse -c vendor/lform/code-dandy/phpstan.neon"
 	},
 	"bin": [
 		"bin/composer/code-dandy"

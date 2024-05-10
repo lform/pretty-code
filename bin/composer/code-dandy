@@ -8,9 +8,9 @@ ROOT_PATH=$(realpath "${PACKAGE_PATH}/../../..")
 case "${1}" in
 	init)
         echo -e "Setting up Composer scripts..."
-		composer config scripts.format "vendor/bin/php-cs-fixer fix --verbose --config vendor/lform/code-dandy/.php-cs-fixer.php"
+		composer config scripts."pretty:format" "vendor/bin/php-cs-fixer fix --verbose --config vendor/lform/code-dandy/.php-cs-fixer.php"
 		echo -e "Added Composer script: format"
-		composer config scripts.lint "vendor/bin/phpstan analyse -c vendor/lform/code-dandy/phpstan.neon"
+		composer config scripts."pretty:lint" "vendor/bin/phpstan analyse -c vendor/lform/code-dandy/phpstan.neon"
 		echo -e "Added Composer script: lint"
 		echo -e "... Done."
 
