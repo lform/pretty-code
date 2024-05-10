@@ -4,6 +4,12 @@
 
 When this package is updated, running `composer update` or `npm update` will pull in the latest configuration changes, minus anything you've overridden in your project. This allows for easy updates to the configuration without having to manually update files.
 
+## Requirements
+
+* Environments: OSX, Linux, WSL
+* PHP 7.4+
+* Node 20+
+
 ## Linters & Formatters
 
 ### Linters
