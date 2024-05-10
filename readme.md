@@ -178,4 +178,6 @@ To undo these changes, just delete the configurations and restore the original s
 ## Todos
 
 1. Add github workflows
-2. Add windows support
+2. Add tailwind linter
+3. Add antlers formatter + linter (if possible) 
+4. Add windows support
