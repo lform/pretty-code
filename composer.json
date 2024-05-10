@@ -2,6 +2,7 @@
 	"name": "lform/pretty-code",
 	"description": "Lform's centrally managed code style & linting configurations",
 	"version": "1.0.0",
+	"license": "MIT",
 	"type": "packages",
 	"require": {
 		"php": "^7.4|^8.0",
