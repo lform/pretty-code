@@ -45,7 +45,7 @@
 			"warn",
 			"as-needed"
 		],
-		"arrow-parens": ["error", "as-needed"],
+		"arrow-parens": ["error", "always"],L
 		"no-console": "off",
 		"no-unused-vars": [
 			"warn",
