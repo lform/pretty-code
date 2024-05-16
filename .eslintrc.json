@@ -9,7 +9,7 @@
 		"ecmaVersion": "latest",
 		"sourceType": "module"
 	},
-	"ignorePatterns": ["**/*.d.ts", "build/*", "node_modules/*"],
+	"ignorePatterns": ["**/*.d.ts", "build/*", "node_modules/*", "dist/*", "*-lock.json"],
 	"rules": {
 		"@stylistic/js/eol-last": ["error", "always"],
 		"@stylistic/js/max-len": [
