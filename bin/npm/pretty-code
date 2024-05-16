@@ -22,6 +22,12 @@ case "${1}" in
 			echo -e "... Done."
 		fi
 
+		if ! [ -f ${ROOT_PATH}/.editorconfig ]; then
+			echo -e "Copying .editorconfig ..."
+			cp ${PACKAGE_PATH}/.editorconfig "${ROOT_PATH}/"
+			echo -e "... Done."
+		fi
+
         echo -e "Setting up Git Hooks to read from the .githooks directory ..."
         git config core.hooksPath ".githooks"
         echo -e "... Done."
