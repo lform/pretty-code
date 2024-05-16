@@ -1,6 +1,6 @@
 {
 	"name": "@lform/pretty-code",
-	"version": "1.0.7",
+	"version": "1.0.8",
 	"description": "Lform code style & lint configurations",
 	"author": "Lform Design",
 	"license": "MIT",
