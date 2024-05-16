@@ -1,6 +1,6 @@
 {
 	"name": "@lform/pretty-code",
-	"version": "1.0.0",
+	"version": "1.0.1",
 	"description": "Lform code style & lint configurations",
 	"author": "Lform Design",
 	"license": "MIT",
@@ -41,7 +41,7 @@
 		"pretty:lint:html": "node_modules/.bin/linthtml --config node_modules/@lform/pretty-code/.linthtmlrc.json '**/*.{html,htm}'"
 	},
 	"bin": [
-		"bin/pretty-code"
+		"bin/npm/pretty-code"
 	],
 	"engines": {
 		"node": ">=20.0.0"
