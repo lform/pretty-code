@@ -42,10 +42,6 @@ This installs the PHP part of the package.
 composer require --dev lform/pretty-code
 ```
 
-```sh
-brew install coreutils
-```
-
 ## Initialization
 
 Once the packages are installed, the package has to be initialized via `npm` to do a few things:
