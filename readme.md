@@ -46,10 +46,11 @@ composer require --dev lform/pretty-code
 
 Once the packages are installed, the package has to be initialized via `npm` to do a few things:
 
-1. Copy a `.lintstagedrc.json` config to the project root.
-2. Copy a preconfigured `.githooks` directory to the project root to trigger the git automations.
-3. Configure the project git repo `core.hooksPath` to use the new `.githooks` directory.
-4. Add new scripts in `package.json` to run the linters and formatters manually.
+1. Copy a `.lintstagedrc.json` config to the project root, if it does not already exist
+2. Copy a preconfigured `.githooks` directory to the project root to trigger the git automations. If the directory already exists, the initialization script will not overwrite it.
+3. Copy a `.editorconfig` config to the project root, if it does not already exist
+4. Configure the project git repo `core.hooksPath` to use the new `.githooks` directory.
+5. Add new scripts in `package.json` to run the linters and formatters manually.
 
 For Composer, initialization will just add the new scripts to `composer.json` to run the linters and formatters manually.
 
