@@ -8,15 +8,15 @@ ROOT_PATH=$(realpath "${PACKAGE_PATH}/../../..")
 case "${1}" in
 	init)
         echo -e "Copying Git Hooks to the .githooks directory ..."
-        cp -r ../.githooks "${$ROOT_PATH}/"
+        cp -r ../.githooks "${ROOT_PATH}/"
         echo -e "... Done."
 
         echo -e "Copying .lintstagedrc.json ..."
-        cp ../.lintstagedrc.json "${$ROOT_PATH}/"
+        cp ../.lintstagedrc.json "${ROOT_PATH}/"
         echo -e "... Done."
 
         echo -e "Setting up Git Hooks to read from the .githooks directory ..."
-        git config core.hooksPath "${$ROOT_PATH}/.githooks"
+        git config core.hooksPath "${ROOT_PATH}/.githooks"
         echo -e "... Done."
 
         echo -e "Setting up NPM scripts..."
