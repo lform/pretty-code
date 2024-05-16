@@ -1,22 +1,25 @@
 #!/bin/bash
 
-CURRENT_PATH=$(dirname "$0")
-PACKAGE_PATH=$(realpath "${CURRENT_PATH}/../..")
+# Current paths resolve from `node_modules/.bin`
+CURRENT_PATH=$(dirname $0)
+PACKAGE_PATH=$(realpath "${CURRENT_PATH}/../@lform/pretty-code")
 BIN_PATH=${PACKAGE_PATH}/bin/npm
-ROOT_PATH=$(realpath "${PACKAGE_PATH}/../../..")
+ROOT_PATH=$(realpath "${CURRENT_PATH}/../..")
+
+echo ROOT_PATH ${ROOT_PATH}
 
 case "${1}" in
 	init)
         echo -e "Copying Git Hooks to the .githooks directory ..."
-        cp -r ../.githooks "${ROOT_PATH}/"
+        cp -r ${PACKAGE_PATH}/.githooks "${ROOT_PATH}/"
         echo -e "... Done."
 
         echo -e "Copying .lintstagedrc.json ..."
-        cp ../.lintstagedrc.json "${ROOT_PATH}/"
+        cp ${PACKAGE_PATH}/.lintstagedrc.json "${ROOT_PATH}/"
         echo -e "... Done."
 
         echo -e "Setting up Git Hooks to read from the .githooks directory ..."
-        git config core.hooksPath "${ROOT_PATH}/.githooks"
+        git config core.hooksPath ".githooks"
         echo -e "... Done."
 
         echo -e "Setting up NPM scripts..."
