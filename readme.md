@@ -59,7 +59,7 @@ Afterward, these new files & changes should be committed to git once everything 
 ### NPM Initialization
 
 ```sh
-node_modules/.bin/pretty-code init
+npx pretty-code init
 ```
 
 ### Composer Initialization
