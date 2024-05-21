@@ -12,11 +12,26 @@
 	"jsxSingleQuote": false,
 	"overrides": [
 		{
+			"files": ["**/*.php", "**/!*.blade.php"],
+			"options": {
+				"parser": "php",
+				"phpVersion": "8.3"
+			}
+		},
+		{
 			"files": [
 				"*.blade.php"
 			],
 			"options": {
 				"parser": "blade"
+			}
+		},
+		{
+			"files": [
+				"*.antlers.html"
+			],
+			"options": {
+				"parser": "antlers"
 			}
 		},
 		{
@@ -37,8 +52,9 @@
 		}
 	],
 	"plugins": [
-		"@zackad/prettier-plugin-twig-melody",
+		"prettier-plugin-antlers",
+		"prettier-plugin-tailwindcss",
 		"prettier-plugin-blade",
-		"prettier-plugin-tailwindcss"
+		"@zackad/prettier-plugin-twig-melody"
 	]
 }
