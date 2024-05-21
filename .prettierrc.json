@@ -12,7 +12,7 @@
 	"jsxSingleQuote": false,
 	"overrides": [
 		{
-			"files": ["**/*.php", "**/!*.blade.php"],
+			"files": ["**/*.php", "**/!*.blade.php", "**/!*.antlers.php"],
 			"options": {
 				"parser": "php",
 				"phpVersion": "8.3"
@@ -28,7 +28,8 @@
 		},
 		{
 			"files": [
-				"*.antlers.html"
+				"*.antlers.html",
+				"*.antlers.php"
 			],
 			"options": {
 				"parser": "antlers"
