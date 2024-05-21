@@ -1,10 +1,15 @@
 {
+	"root": true,
 	"env": {
 		"browser": true,
 		"es2021": true
 	},
 	"plugins": ["@stylistic/eslint-plugin-js", "prettier"],
-	"extends": ["standard", "plugin:prettier/recommended"],
+	"extends": [
+		"standard",
+		"plugin:prettier/recommended",
+		"plugin:tailwindcss/recommended"
+	],
 	"parserOptions": {
 		"ecmaVersion": "latest",
 		"sourceType": "module"
@@ -19,6 +24,12 @@
 		"composer.json",
 		"package.json",
 		"yarn.json"
+	],
+	"overrides": [
+		{
+			"files": ["*.html", "*.blade.php"],
+			"parser": "@angular-eslint/template-parser"
+		}
 	],
 	"rules": {
 		"@stylistic/js/eol-last": ["error", "always"],
