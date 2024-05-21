@@ -59,7 +59,7 @@ Afterward, these new files & changes should be committed to git once everything 
 ### NPM Initialization
 
 ```sh
-node_modules/.bin/pretty-code init
+npx pretty-code init
 ```
 
 ### Composer Initialization
@@ -106,21 +106,21 @@ To remove the package:
 
 > L = Linted, F = Formatted
 
-- css (LF)
-- scss (LF)
-- pcss (LF)
+- antlers.html (F)
+- antlers.php (F)
+- blade.php (F)
+- css (LF)-
+- html, htm (LF)
 - js (LF)
 - jsx (LF)
-- json (LF)
+- json (F)
+- pcss (LF)
+- php (LF)
+- scss (LF)
 - ts (LF)
 - tsx (LF)
-- html (LF)
-- htm (LF)
 - twig (F)
-- blade.php (F)
-- php (LF)
-- yml (LF)
-- yaml (LF)
+- yaml, yml (LF)
 
 ## Commands
 

@@ -1,24 +1,21 @@
 {
 	"*.php": [
-		"vendor/bin/phpstan analyse -c node_modules/@lform/pretty-code/phpstan.neon",
-		"vendor/bin/php-cs-fixer fix --verbose --config node_modules/@lform/pretty-code/.php-cs-fixer.php"
+		"vendor/bin/php-cs-fixer fix --verbose --config node_modules/@lform/pretty-code/.php-cs-fixer.php",
+		"vendor/bin/phpstan analyse -c node_modules/@lform/pretty-code/phpstan.neon"
 	],
-	"*.{js,jsx,json,ts,tsx}": [
-		"node_modules/.bin/prettier --config node_modules/@lform/pretty-code/.prettierrc.json --ignore-path node_modules/@lform/pretty-code/.prettierignore --write",
-		"node_modules/.bin/eslint -c node_modules/@lform/pretty-code/.eslintrc.json --fix"
-	],
-	"*.{twig,blade.php}": [
-		"node_modules/.bin/prettier --config node_modules/@lform/pretty-code/.prettierrc.json --ignore-path node_modules/@lform/pretty-code/.prettierignore --write"
+	"*.{js,jsx,ts,tsx}": [
+		"npx prettier --config node_modules/@lform/pretty-code/.prettierrc.json --ignore-path node_modules/@lform/pretty-code/.prettierignore --write",
+		"npx eslint -c node_modules/@lform/pretty-code/.eslintrc.json --fix"
 	],
 	"*.{html,htm}": [
-		"node_modules/.bin/linthtml --config node_modules/@lform/pretty-code/.linthtmlrc.json",
-		"node_modules/.bin/prettier --config node_modules/@lform/pretty-code/.prettierrc.json --ignore-path node_modules/@lform/pretty-code/.prettierignore --write"
+		"npx prettier --config node_modules/@lform/pretty-code/.prettierrc.json --ignore-path node_modules/@lform/pretty-code/.prettierignore --write",
+		"npx linthtml --config node_modules/@lform/pretty-code/.linthtmlrc.json"
 	],
 	"*.{css,scss,pcss}": [
-		"node_modules/.bin/prettier --config node_modules/@lform/pretty-code/.prettierrc.json --ignore-path node_modules/@lform/pretty-code/.prettierignore --write",
-		"node_modules/.bin/stylelint --config node_modules/@lform/pretty-code/stylelint.json --ignore-path node_modules/@lform/pretty-code/stylelintignore --fix"
+		"npx prettier --config node_modules/@lform/pretty-code/.prettierrc.json --ignore-path node_modules/@lform/pretty-code/.prettierignore --write",
+		"npx stylelint --config node_modules/@lform/pretty-code/stylelint.json --ignore-path node_modules/@lform/pretty-code/stylelintignore --fix"
 	],
-	"*.{yml,yaml}": [
-		"node_modules/.bin/prettier --config node_modules/@lform/pretty-code/.prettierrc.json --ignore-path node_modules/@lform/pretty-code/.prettierignore --write"
+	"*.{twig,blade.php,json,yml,yaml}": [
+		"npx prettier --config node_modules/@lform/pretty-code/.prettierrc.json --ignore-path node_modules/@lform/pretty-code/.prettierignore --write"
 	]
 }
