@@ -1,7 +1,6 @@
 {
 	"name": "lform/pretty-code",
 	"description": "Lform's centrally managed code style & linting configurations",
-	"version": "1.1.0",
 	"license": "MIT",
 	"type": "packages",
 	"require": {
