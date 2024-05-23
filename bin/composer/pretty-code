@@ -1,10 +1,5 @@
 #!/bin/bash
 
-CURRENT_PATH=$(dirname "$0")
-PACKAGE_PATH=$(realpath "${CURRENT_PATH}/../..")
-BIN_PATH=${PACKAGE_PATH}/bin/npm
-ROOT_PATH=$(realpath "${PACKAGE_PATH}/../../..")
-
 case "${1}" in
 	init)
         echo -e "Setting up Composer scripts..."

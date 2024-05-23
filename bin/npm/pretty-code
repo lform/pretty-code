@@ -33,10 +33,10 @@ case "${1}" in
         echo -e "... Done."
 
         echo -e "Setting up NPM scripts..."
-        npm pkg set scripts['pretty:format']="npx prettier --config node_modules/@lform/pretty-code/.prettierrc.json --ignore-path node_modules/@lform/pretty-code/.prettierignore --write '**/*.{css,scss,pcss,js,jsx,json,ts,tsx,html,htm,twig,blade.php,yml,yaml}'"
-        npm pkg set scripts['pretty:lint:css']="npx stylelint --config node_modules/@lform/pretty-code/stylelint.json --ignore-path node_modules/@lform/pretty-code/stylelintignore --fix '**/*.{css,scss,pcss}'"
-        npm pkg set scripts['pretty:lint:js']="npx eslint -c node_modules/@lform/pretty-code/.eslintrc.json --fix '**/*.{js,jsx,json,ts,tsx}'"
-        npm pkg set scripts['pretty:lint:html']="npx linthtml --config node_modules/@lform/pretty-code/.linthtmlrc.json '**/*.{html,htm}'"
+        npm pkg set scripts['pretty:format']="npx prettier --config node_modules/@lform/pretty-code/.prettierrc.json --ignore-path node_modules/@lform/pretty-code/.prettierignore --write"
+        npm pkg set scripts['pretty:lint:css']="npx stylelint --config node_modules/@lform/pretty-code/stylelint.json --ignore-path node_modules/@lform/pretty-code/stylelintignore --fix"
+        npm pkg set scripts['pretty:lint:js']="npx eslint -c node_modules/@lform/pretty-code/.eslintrc.json --fix"
+        npm pkg set scripts['pretty:lint:html']="npx linthtml --config node_modules/@lform/pretty-code/.linthtmlrc.json"
         echo -e "... Done."
 
         echo "Setup complete."

@@ -1,6 +1,6 @@
 {
 	"name": "@lform/pretty-code",
-	"version": "1.1.0",
+	"version": "1.1.1",
 	"description": "Lform code style & lint configurations",
 	"author": "Lform Design",
 	"license": "MIT",
@@ -37,9 +37,9 @@
 	},
 	"scripts": {
 		"pretty:format": "npx prettier --config node_modules/@lform/pretty-code/.prettierrc.json --ignore-path node_modules/@lform/pretty-code/.prettierignore --write",
-		"pretty:lint:css": "npx stylelint --config node_modules/@lform/pretty-code/stylelint.json --ignore-path node_modules/@lform/pretty-code/stylelintignore --fix '**/*.{css,scss,pcss}'",
-		"pretty:lint:js": "npx eslint -c node_modules/@lform/pretty-code/.eslintrc.json --fix '**/*.{js,jsx,json,ts,tsx}'",
-		"pretty:lint:html": "npx linthtml --config node_modules/@lform/pretty-code/.linthtmlrc.json '**/*.{html,htm}'"
+		"pretty:lint:css": "npx stylelint --config node_modules/@lform/pretty-code/stylelint.json --ignore-path node_modules/@lform/pretty-code/stylelintignore --fix",
+		"pretty:lint:js": "npx eslint -c node_modules/@lform/pretty-code/.eslintrc.json --fix",
+		"pretty:lint:html": "npx linthtml --config node_modules/@lform/pretty-code/.linthtmlrc.json"
 	},
 	"bin": [
 		"bin/npm/pretty-code"
