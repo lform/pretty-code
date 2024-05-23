@@ -1,5 +1,5 @@
 {
-	"*.php": [
+	"**/!(*.blade|*.antlers).php": [
 		"vendor/bin/php-cs-fixer fix --verbose --config node_modules/@lform/pretty-code/.php-cs-fixer.php",
 		"vendor/bin/phpstan analyse -c node_modules/@lform/pretty-code/phpstan.neon"
 	],
@@ -7,7 +7,7 @@
 		"npx prettier --config node_modules/@lform/pretty-code/.prettierrc.json --ignore-path node_modules/@lform/pretty-code/.prettierignore --write",
 		"npx eslint -c node_modules/@lform/pretty-code/.eslintrc.json --fix"
 	],
-	"*.{html,htm}": [
+	"*.{antlers.html,html,htm}": [
 		"npx prettier --config node_modules/@lform/pretty-code/.prettierrc.json --ignore-path node_modules/@lform/pretty-code/.prettierignore --write",
 		"npx linthtml --config node_modules/@lform/pretty-code/.linthtmlrc.json"
 	],
@@ -15,7 +15,7 @@
 		"npx prettier --config node_modules/@lform/pretty-code/.prettierrc.json --ignore-path node_modules/@lform/pretty-code/.prettierignore --write",
 		"npx stylelint --config node_modules/@lform/pretty-code/stylelint.json --ignore-path node_modules/@lform/pretty-code/stylelintignore --fix"
 	],
-	"*.{twig,blade.php,json,yml,yaml}": [
+	"*.{antlers.php,blade.php,json,yml,yaml,twig}": [
 		"npx prettier --config node_modules/@lform/pretty-code/.prettierrc.json --ignore-path node_modules/@lform/pretty-code/.prettierignore --write"
 	]
 }
