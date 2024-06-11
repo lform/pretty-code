@@ -70,6 +70,20 @@ vendor/bin/pretty-code init
 
 ### Troubleshooting
 
+#### Disconnecting & Reconnecting the Automations
+
+If you're having problems with the automated git hooks and need to disable or re-enable them:
+
+```sh
+# Disable automations, set the git hooks to the default:
+git config core.hooksPath ".git/hooks"
+
+# Re-enable automations, set the git hooks to our custom hooks directory:
+git config core.hooksPath ".githooks"
+```
+
+#### OS Issues
+
 **NOTE**: On OSX, you may also need to install `coreutils` since the initialization scripts use the `realpath` command. If you see errors related to this, run the following:
 
 ```sh
