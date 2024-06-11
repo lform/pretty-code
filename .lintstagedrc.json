@@ -13,7 +13,7 @@
 	],
 	"*.{css,scss,pcss}": [
 		"npx prettier --config node_modules/@lform/pretty-code/.prettierrc.json --ignore-path node_modules/@lform/pretty-code/.prettierignore --write",
-		"npx stylelint --config node_modules/@lform/pretty-code/stylelint.json --ignore-path node_modules/@lform/pretty-code/stylelintignore --fix"
+		"npx stylelint --config node_modules/@lform/pretty-code/.stylelintrc.json --ignore-path node_modules/@lform/pretty-code/.stylelintignore --fix"
 	],
 	"*.{antlers.php,blade.php,json,yml,yaml,twig}": [
 		"npx prettier --config node_modules/@lform/pretty-code/.prettierrc.json --ignore-path node_modules/@lform/pretty-code/.prettierignore --write"
