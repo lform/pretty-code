@@ -1,7 +1,7 @@
 {
 	"**/!(*.blade|*.antlers).php": [
 		"vendor/bin/php-cs-fixer fix --verbose --config node_modules/@lform/pretty-code/.php-cs-fixer.php",
-		"vendor/bin/phpstan analyse -l 1 --memory-limit=4G -c node_modules/@lform/pretty-code/phpstan.neon"
+		"vendor/bin/phpstan analyse --memory-limit=4G -c node_modules/@lform/pretty-code/phpstan.neon"
 	],
 	"*.{js,jsx,ts,tsx}": [
 		"npx prettier --config node_modules/@lform/pretty-code/.prettierrc.json --ignore-path node_modules/@lform/pretty-code/.prettierignore --write",
