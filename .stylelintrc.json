@@ -39,6 +39,7 @@
 				"message": "ID names should be in kebab-case (lowercase-and-dashes)"
 			}
 		],
+		"scss/load-no-partial-leading-underscore": false,
 		"scss/at-function-pattern": [
 			"^[a-z0-9\\-]+$",
 			{
