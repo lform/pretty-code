@@ -5,8 +5,8 @@ case "${1}" in
         echo -e "Setting up Composer scripts..."
 		composer config scripts."pretty:format" "vendor/bin/php-cs-fixer fix --verbose --config vendor/lform/pretty-code/.php-cs-fixer.php"
 		echo -e "Added Composer script: format"
-		composer config scripts."pretty:lint" "vendor/bin/phpstan analyse -c vendor/lform/pretty-code/phpstan.neon"
-		echo -e "Added Composer script: lint"
+		# composer config scripts."pretty:lint" "vendor/bin/phpstan analyse -c vendor/lform/pretty-code/phpstan.neon"
+		# echo -e "Added Composer script: lint"
 		echo -e "... Done."
 
         echo "Setup complete."
