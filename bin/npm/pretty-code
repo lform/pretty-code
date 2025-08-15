@@ -16,11 +16,11 @@ case "${1}" in
 			echo -e "... Done."
 		fi
 
-		if ! [ -f ${ROOT_PATH}/.lintstagedrc.json ]; then
-			echo -e "Copying .lintstagedrc.json ..."
-			cp ${PACKAGE_PATH}/.lintstagedrc.json "${ROOT_PATH}/"
-			echo -e "... Done."
-		fi
+		# if ! [ -f ${ROOT_PATH}/.lintstagedrc.json ]; then
+		# 	 echo -e "Copying .lintstagedrc.json ..."
+		# 	 cp ${PACKAGE_PATH}/.lintstagedrc.json "${ROOT_PATH}/"
+		# 	 echo -e "... Done."
+		# fi
 
 		if ! [ -f ${ROOT_PATH}/.editorconfig ]; then
 			echo -e "Copying .editorconfig ..."
@@ -34,9 +34,9 @@ case "${1}" in
 
         echo -e "Setting up NPM scripts..."
         npm pkg set scripts['pretty:format']="npx prettier --config node_modules/@lform/pretty-code/.prettierrc.json --ignore-path node_modules/@lform/pretty-code/.prettierignore --write"
-        npm pkg set scripts['pretty:lint:css']="npx stylelint --config node_modules/@lform/pretty-code/stylelint.json --ignore-path node_modules/@lform/pretty-code/stylelintignore --fix"
-        npm pkg set scripts['pretty:lint:js']="npx eslint -c node_modules/@lform/pretty-code/.eslintrc.json --fix"
-        npm pkg set scripts['pretty:lint:html']="npx linthtml --config node_modules/@lform/pretty-code/.linthtmlrc.json"
+		# npm pkg set scripts['pretty:lint:css']="npx stylelint --config node_modules/@lform/pretty-code/stylelint.json --ignore-path node_modules/@lform/pretty-code/stylelintignore --fix"
+        # npm pkg set scripts['pretty:lint:js']="npx eslint -c node_modules/@lform/pretty-code/.eslintrc.json --fix"
+        # npm pkg set scripts['pretty:lint:html']="npx linthtml --config node_modules/@lform/pretty-code/.linthtmlrc.json"
         echo -e "... Done."
 
         echo "Setup complete."
