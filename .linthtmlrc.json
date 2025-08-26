@@ -20,6 +20,6 @@
 		"img-req-alt": [true, "allownull"],
 		"no-surrounding-whitespace": false,
 		"spec-char-escape": true,
-		"title-max-len": [true ,60]
+		"title-max-len": [true, 60]
 	}
 }

@@ -41,12 +41,8 @@
 				"checkForEach": true
 			}
 		],
-		"arrow-body-style": [
-			"warn",
-			"as-needed"
-		],
+		"arrow-body-style": ["warn", "as-needed"],
 		"arrow-parens": ["error", "always"],
-		"no-console": "off",
 		"no-unused-vars": [
 			"warn",
 			{
@@ -64,10 +60,7 @@
 				"ignoreGlobals": false
 			}
 		],
-		"complexity": [
-			"warn",
-			6
-		],
+		"complexity": ["warn", 6],
 		"curly": "error",
 		"default-case-last": "error",
 		"default-param-last": ["error"],
@@ -80,24 +73,12 @@
 				"exceptions": ["e"]
 			}
 		],
-		"max-depth": [
-			"error",
-			6
-		],
+		"max-depth": ["error", 6],
 		"max-lines": "off",
 		"max-lines-per-function": "off",
-		"max-nested-callbacks": [
-			"error",
-			4
-		],
-		"max-params": [
-			"error",
-			5
-		],
-		"multiline-comment-style": [
-			"warn",
-			"starred-block"
-		],
+		"max-nested-callbacks": ["error", 4],
+		"max-params": ["error", 5],
+		"multiline-comment-style": ["warn", "starred-block"],
 		"no-confusing-arrow": "error",
 		"no-console": "warn",
 		"no-continue": "off",
