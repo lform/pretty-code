@@ -1,19 +1,15 @@
 {
 	"**/!(*.blade|*.antlers).php": [
-		"vendor/bin/php-cs-fixer fix --verbose --config node_modules/@lform/pretty-code/.php-cs-fixer.php",
-		"vendor/bin/phpstan analyse --memory-limit=4G -c node_modules/@lform/pretty-code/phpstan.neon"
+		"vendor/bin/php-cs-fixer fix --verbose --config node_modules/@lform/pretty-code/.php-cs-fixer.php"
 	],
 	"*.{js,jsx,ts,tsx}": [
-		"npx prettier --config node_modules/@lform/pretty-code/.prettierrc.json --ignore-path node_modules/@lform/pretty-code/.prettierignore --write",
-		"npx eslint -c node_modules/@lform/pretty-code/.eslintrc.json --fix"
+		"npx prettier --config node_modules/@lform/pretty-code/.prettierrc.json --ignore-path node_modules/@lform/pretty-code/.prettierignore --write"
 	],
 	"**/!(*.antlers).{,html,htm}": [
 		"npx prettier --config node_modules/@lform/pretty-code/.prettierrc.json --ignore-path node_modules/@lform/pretty-code/.prettierignore --write",
-		"npx linthtml --config node_modules/@lform/pretty-code/.linthtmlrc.json"
 	],
 	"*.{css,scss,pcss}": [
-		"npx prettier --config node_modules/@lform/pretty-code/.prettierrc.json --ignore-path node_modules/@lform/pretty-code/.prettierignore --write",
-		"npx stylelint --config node_modules/@lform/pretty-code/.stylelintrc.json --ignore-path node_modules/@lform/pretty-code/.stylelintignore --fix"
+		"npx prettier --config node_modules/@lform/pretty-code/.prettierrc.json --ignore-path node_modules/@lform/pretty-code/.prettierignore --write"
 	],
 	"*.{antlers.php,blade.php,antlers.html,json,yml,yaml,twig}": [
 		"npx prettier --config node_modules/@lform/pretty-code/.prettierrc.json --ignore-path node_modules/@lform/pretty-code/.prettierignore --write"

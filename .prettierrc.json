@@ -15,30 +15,23 @@
 			"files": ["**/*.php", "**/!*.blade.php", "**/!*.antlers.php"],
 			"options": {
 				"parser": "php",
-				"phpVersion": "8.3"
+				"phpVersion": "8.4"
 			}
 		},
 		{
-			"files": [
-				"*.blade.php"
-			],
+			"files": ["*.blade.php"],
 			"options": {
 				"parser": "blade"
 			}
 		},
 		{
-			"files": [
-				"*.antlers.html",
-				"*.antlers.php"
-			],
+			"files": ["*.antlers.html", "*.antlers.php"],
 			"options": {
 				"parser": "antlers"
 			}
 		},
 		{
-			"files": [
-				"*.twig"
-			],
+			"files": ["*.twig"],
 			"options": {
 				"parser": "melody",
 				"twigMultiTags": [

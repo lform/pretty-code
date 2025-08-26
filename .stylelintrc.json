@@ -2,12 +2,7 @@
 	"extends": ["stylelint-config-standard", "stylelint-config-standard-scss"],
 	"overrides": [
 		{
-			"files": [
-				"*.scss",
-				"**/*.scss",
-				"*.pcss",
-				"**/*.pcss"
-			],
+			"files": ["*.scss", "**/*.scss", "*.pcss", "**/*.pcss"],
 			"customSyntax": "postcss-scss"
 		}
 	],
