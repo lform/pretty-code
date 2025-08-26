@@ -4,7 +4,6 @@
 
 When this package is updated, running `composer update` or `npm update` will pull in the latest configuration changes, minus anything you've overridden in your project. This allows for easy updates to the configuration without having to manually update files.
 
-
 ### Table of Contents
 
 1. [Requirements](#requirements)
@@ -12,7 +11,6 @@ When this package is updated, running `composer update` or `npm update` will pul
 3. [Initialization](#initialization)
 4. [Commands](#commands)
 5. [Customization per Project](#customization-per-project)
-
 
 ## Requirements
 
@@ -42,6 +40,21 @@ This installs the PHP part of the package.
 composer require --dev lform/pretty-code
 ```
 
+### Laravel & PHPStan
+
+For Laravel based projects, install Larastan, which will configure PHPStan for use in Laravel projects.
+
+* [Larastan Documentation & Repo](https://github.com/larastan/larastan)
+
+#### Installing Larastan
+
+1. Install Larastan (refer to documentation) via Composer
+2. Create a `phpstan.neon` file in the project root or copy the one from `pretty-code`
+3. Edit the `.lintstagedrc.json` file and remove the preset configuration path from `phpstan`, so it uses the project root configuration by default.
+4. Add the larastan extension to the `phpstan.neon` file in the project root:
+
+     includes:
+         - vendor/larastan/larastan/extension.neon
 ## Initialization
 
 Once the packages are installed, the package has to be initialized via `npm` to do a few things:
@@ -52,6 +65,7 @@ Once the packages are installed, the package has to be initialized via `npm` to 
 4. Configure the project git repo `core.hooksPath` to use the new `.githooks` directory.
 5. Add new scripts in `package.json` to run the linters and formatters manually.
 
+
 For Composer, initialization will just add the new scripts to `composer.json` to run the linters and formatters manually.
 
 Afterward, these new files & changes should be committed to git once everything is confirmed working. Read below for how to initialize the package.
@@ -61,14 +75,23 @@ Afterward, these new files & changes should be committed to git once everything 
 ```sh
 npx pretty-code init
 ```
-
 ### Composer Initialization
 
 ```sh
 vendor/bin/pretty-code init
 ```
-
 ### Troubleshooting
+
+#### PHPStan Pains
+
+PHPStan is very helpful but can be a source of aggravation on projects that have an older code-base or used unconventional approaches. There are a few things that can be done to address these issues:
+
+1. If it's a Laravel project, install Larastan (instructions are above)
+2. Exclude files from reporting in the configuration or with inline comments. For errors that should be ignored, add them to the configuration.
+3. Lower the reporting level in the configuration
+4. Generate a baseline report, so you can focus on new code instead of trying to fix old code. Commit the baseline report to the project repo.
+
+If all else fails, PHPStan can be disabled but this should be avoided except when necessary.
 
 #### Disconnecting & Reconnecting the Automations
 
@@ -81,7 +104,6 @@ git config core.hooksPath ".git/hooks"
 # Re-enable automations, set the git hooks to our custom hooks directory:
 git config core.hooksPath ".githooks"
 ```
-
 #### OS Issues
 
 **NOTE**: On OSX, you may also need to install `coreutils` since the initialization scripts use the `realpath` command. If you see errors related to this, run the following:
@@ -89,11 +111,10 @@ git config core.hooksPath ".githooks"
 ```sh
 brew install coreutils
 ```
-
 ### Uninstalling
 
-To remove the package: 
- 
+To remove the package:
+
 1. Delete any custom linter or formatter configs from the project root
 2. Delete the `.githooks` directory
 3. Run `git config core.hooksPath .git/hooks`
@@ -119,6 +140,7 @@ To remove the package:
 ## Supported File Types
 
 > L = Linted, F = Formatted
+>
 
 - antlers.html (F)
 - antlers.php (F)
@@ -147,7 +169,6 @@ npm run pretty:format <path>
 # Runs PHP-CS-Fixer (php)
 composer pretty:format <path>
 ```
-
 ### Linters
 
 ```sh
@@ -163,7 +184,6 @@ npm run pretty:lint:html <path>
 # Runs PHPStan (php)
 composer pretty:lint <path>
 ```
-
 ## Customization Per Project
 
 To customize the linters and formatters per project:
@@ -178,17 +198,18 @@ To undo these changes, just delete the configurations and restore the original s
 
 ## Configuration Files
 
-- `.prettierrc.json`
-- `.prettierignore`
-- `stylelint.json`
-- `stylelintignore`
 - `.eslintrc.json`
 - `.eslintignore (if applicable)`
 - `.linthtmlrc.json`
+- `.prettierrc.json`
+- `.prettierignore`
+- `.stylelint.json`
+- `.stylelintignore`
+- `phpstan.neon`
 
 ## Todos
 
 1. Add github workflows
 2. Add tailwind linter
-3. Add antlers formatter + linter (if possible) 
-4. Add windows support
+3. Add antlers formatter + linter
+4. Add windows support (convert bin scripts to node.js)

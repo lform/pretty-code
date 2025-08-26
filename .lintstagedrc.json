@@ -5,13 +5,13 @@
 	"*.{js,jsx,ts,tsx}": [
 		"npx prettier --config node_modules/@lform/pretty-code/.prettierrc.json --ignore-path node_modules/@lform/pretty-code/.prettierignore --write"
 	],
-	"*.{antlers.html,html,htm}": [
-		"npx prettier --config node_modules/@lform/pretty-code/.prettierrc.json --ignore-path node_modules/@lform/pretty-code/.prettierignore --write"
+	"**/!(*.antlers).{,html,htm}": [
+		"npx prettier --config node_modules/@lform/pretty-code/.prettierrc.json --ignore-path node_modules/@lform/pretty-code/.prettierignore --write",
 	],
 	"*.{css,scss,pcss}": [
 		"npx prettier --config node_modules/@lform/pretty-code/.prettierrc.json --ignore-path node_modules/@lform/pretty-code/.prettierignore --write"
 	],
-	"*.{antlers.php,blade.php,json,yml,yaml,twig}": [
+	"*.{antlers.php,blade.php,antlers.html,json,yml,yaml,twig}": [
 		"npx prettier --config node_modules/@lform/pretty-code/.prettierrc.json --ignore-path node_modules/@lform/pretty-code/.prettierignore --write"
 	]
 }
