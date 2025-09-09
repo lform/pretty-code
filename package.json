@@ -36,9 +36,9 @@
 		"url": "git+https://github.com/lform/pretty-code.git"
 	},
 	"scripts": {
-		"pretty:format": "npx prettier --config node_modules/@lform/pretty-code/.prettierrc.json --ignore-path node_modules/@lform/pretty-code/.prettierignore --write",
-		"pretty:lint:css": "npx stylelint --config node_modules/@lform/pretty-code/stylelint.json --ignore-path node_modules/@lform/pretty-code/stylelintignore --fix",
-		"pretty:lint:js": "npx eslint -c node_modules/@lform/pretty-code/.eslintrc.json --fix",
+		"pretty:format": "npx prettier --config node_modules/@lform/pretty-code/.prettierrc.json --ignore-path node_modules/@lform/pretty-code/.prettierignore --write .",
+		"pretty:lint:css": "npx stylelint --config node_modules/@lform/pretty-code/.stylelint.json --ignore-path node_modules/@lform/pretty-code/.stylelintignore --fix .",
+		"pretty:lint:js": "npx eslint -c node_modules/@lform/pretty-code/.eslintrc.json --fix .",
 		"pretty:lint:html": "npx linthtml --config node_modules/@lform/pretty-code/.linthtmlrc.json"
 	},
 	"bin": [
