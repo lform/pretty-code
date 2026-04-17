@@ -5,16 +5,15 @@
 ## Table of Contents
 
 1. [Requirements](#requirements)
-2. [Installation](#installation)
-3. [Initialization](#initialization)
-4. [Commands](#commands)
-5. [Updating](#updating)
-6. [PHP Formatting](#php-formatting)
-7. [Supported File Types](#supported-file-types)
-8. [Configuration Files](#configuration-files)
-9. [Customization per Project](#customization-per-project)
-10. [Troubleshooting](#troubleshooting)
-11. [Uninstalling](#uninstalling)
+2. [Installation & Setup](#installation--setup)
+3. [Commands](#commands)
+4. [Updating](#updating)
+5. [PHP Formatting](#php-formatting)
+6. [Supported File Types](#supported-file-types)
+7. [Configuration Files](#configuration-files)
+8. [Customization per Project](#customization-per-project)
+9. [Troubleshooting](#troubleshooting)
+10. [Uninstalling](#uninstalling)
 
 ## Requirements
 
@@ -22,7 +21,9 @@
 - Node 20+
 - PHP 8.1+ (for PHP formatting)
 
-## Installation
+## Installation & Setup
+
+### Installation
 
 ```sh
 npm install --save-dev @lform/pretty-code
@@ -30,7 +31,7 @@ npm install --save-dev @lform/pretty-code
 
 After installing, you'll see a reminder to run the init command.
 
-## Initialization
+### Initialization
 
 ```sh
 npx pretty-code init
