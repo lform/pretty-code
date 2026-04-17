@@ -2,53 +2,47 @@
 	"semi": true,
 	"singleQuote": false,
 	"tabWidth": 4,
-	"useTabs": true,
 	"printWidth": 120,
 	"trailingComma": "es5",
 	"arrowParens": "avoid",
 	"htmlWhitespaceSensitivity": "css",
 	"bracketSameLine": true,
 	"proseWrap": "preserve",
-	"jsxSingleQuote": false,
 	"overrides": [
 		{
-			"files": ["**/*.php", "**/!*.blade.php", "**/!*.antlers.php"],
+			"files": ["*.html", "*.htm"],
 			"options": {
-				"parser": "php",
-				"phpVersion": "8.4"
+				"useTabs": false,
+				"tabWidth": 2
 			}
 		},
 		{
 			"files": ["*.blade.php"],
 			"options": {
-				"parser": "blade"
+				"parser": "blade",
+				"useTabs": false,
+				"tabWidth": 2
 			}
 		},
 		{
 			"files": ["*.antlers.html", "*.antlers.php"],
 			"options": {
-				"parser": "antlers"
+				"parser": "antlers",
+				"useTabs": false,
+				"tabWidth": 2
 			}
 		},
 		{
-			"files": ["*.twig"],
+			"files": ["*.yaml", "*.yml"],
 			"options": {
-				"parser": "melody",
-				"twigMultiTags": [
-					"nav,endnav",
-					"switch,case,default,endswitch",
-					"ifchildren,endifchildren",
-					"cache,endcache",
-					"unless,endunless",
-					"js,endjs"
-				]
+				"useTabs": false,
+				"tabWidth": 2
 			}
 		}
 	],
 	"plugins": [
 		"prettier-plugin-antlers",
-		"prettier-plugin-tailwindcss",
 		"prettier-plugin-blade",
-		"@zackad/prettier-plugin-twig-melody"
+		"prettier-plugin-tailwindcss"
 	]
 }

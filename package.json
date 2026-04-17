@@ -1,7 +1,7 @@
 {
 	"name": "@lform/pretty-code",
-	"version": "1.2.1",
-	"description": "Lform code style & lint configurations",
+	"version": "2.0.0",
+	"description": "Lform code formatting configurations",
 	"author": "Lform Design",
 	"license": "MIT",
 	"homepage": "https://github.com/lform/pretty-code#readme",
@@ -9,25 +9,11 @@
 		"url": "https://github.com/lform/pretty-code/issues"
 	},
 	"dependencies": {
-		"@linthtml/linthtml": "^0.9.6",
-		"@linthtml/linthtml-config-recommended": "^0.1.0",
-		"@stylistic/eslint-plugin-js": "^1.7.0",
-		"@stylistic/stylelint-plugin": "^2.1.1",
-		"@zackad/prettier-plugin-twig-melody": "^0.6.0",
-		"eslint": "^8.56.0",
-		"eslint-config-prettier": "^9.1.0",
-		"eslint-config-standard": "^17.1.0",
-		"eslint-plugin-import": "^2.29.1",
-		"eslint-plugin-prettier": "^5.1.3",
-		"eslint-plugin-promise": "^6.1.1",
+		"lint-staged": "^15.0.0",
 		"prettier": "^3.2.0",
 		"prettier-plugin-antlers": "^2.0.2",
 		"prettier-plugin-blade": "^2.1.12",
-		"prettier-plugin-tailwindcss": "^0.5.13",
-		"stylelint": "^16.2.0",
-		"stylelint-config-standard": "^36.0.0",
-		"stylelint-config-standard-scss": "^13.0.0",
-		"stylelint-config-tailwindcss": "^0.0.7"
+		"prettier-plugin-tailwindcss": "^0.5.13"
 	},
 	"main": "package.json",
 	"private": false,
@@ -36,14 +22,13 @@
 		"url": "git+https://github.com/lform/pretty-code.git"
 	},
 	"scripts": {
-		"pretty:format": "npx prettier --config node_modules/@lform/pretty-code/.prettierrc.json --ignore-path node_modules/@lform/pretty-code/.prettierignore --write .",
-		"pretty:lint:css": "npx stylelint --config node_modules/@lform/pretty-code/.stylelint.json --ignore-path node_modules/@lform/pretty-code/.stylelintignore --fix .",
-		"pretty:lint:js": "npx eslint -c node_modules/@lform/pretty-code/.eslintrc.json --fix .",
-		"pretty:lint:html": "npx linthtml --config node_modules/@lform/pretty-code/.linthtmlrc.json"
+		"pretty:format": "prettier --write .",
+		"pretty:check": "prettier --check .",
+		"pretty:format:php": "vendor/bin/pint"
 	},
-	"bin": [
-		"bin/npm/pretty-code"
-	],
+	"bin": {
+		"pretty-code": "bin/npm/pretty-code"
+	},
 	"engines": {
 		"node": ">=20.0.0"
 	}

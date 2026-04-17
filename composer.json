@@ -1,16 +1,13 @@
 {
 	"name": "lform/pretty-code",
-	"description": "Lform's centrally managed code style & linting configurations",
+	"description": "Lform code formatting configurations",
 	"license": "MIT",
 	"type": "packages",
 	"require": {
-		"php": "^7.4|^8.0",
-		"friendsofphp/php-cs-fixer": "^3.46",
-		"phpstan/phpstan": "^1.8"
+		"php": "^8.1"
 	},
 	"scripts": {
-		"pretty:format": "vendor/bin/php-cs-fixer fix --verbose --config vendor/lform/pretty-code/.php-cs-fixer.php",
-		"pretty:lint": "vendor/bin/phpstan analyse -c vendor/lform/pretty-code/phpstan.neon"
+		"pretty:format:php": "vendor/bin/pint"
 	},
 	"bin": [
 		"bin/composer/pretty-code"

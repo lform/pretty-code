@@ -17,6 +17,3 @@
 /**/wp-admin
 /**/wp-includes
 *-lock.json
-/**/*.yaml
-/**/*.yml
-/**/*.md
