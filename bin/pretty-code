@@ -1,0 +1,126 @@
+#!/usr/bin/env node
+
+const fs = require('fs');
+const path = require('path');
+const { execSync } = require('child_process');
+
+const PACKAGE_PATH = path.resolve(__dirname, '..');
+const ROOT_PATH = process.cwd();
+
+const CONFIG_FILES = [
+    ['.lintstagedrc.json', '.lintstagedrc.suggestions.json'],
+    ['.prettierrc.json',   '.prettierrc.suggestions.json'],
+    ['.prettierignore',    '.prettierignore.suggestions'],
+    ['.editorconfig',     '.editorconfig.suggestions'],
+    ['pint.json',          'pint.suggestions.json'],
+];
+
+function copyFile(src, dest, suggest, suggestionName) {
+    const destName = path.basename(dest);
+    if (suggest) {
+        const suggestion = path.join(path.dirname(dest), suggestionName);
+        console.log(`Writing suggestion to ${path.basename(suggestion)} ...`);
+        fs.copyFileSync(src, suggestion);
+    } else {
+        console.log(`Copying ${destName} ...`);
+        fs.copyFileSync(src, dest);
+    }
+    console.log('... Done.');
+}
+
+function copyDir(src, dest, suggest) {
+    const destName = path.basename(dest);
+    if (suggest) {
+        const suggestion = `${dest}.suggestions`;
+        console.log(`Writing suggestion to ${path.basename(suggestion)}/ ...`);
+        fs.cpSync(src, suggestion, { recursive: true });
+    } else {
+        console.log(`Copying ${destName}/ ...`);
+        fs.cpSync(src, dest, { recursive: true });
+    }
+    console.log('... Done.');
+}
+
+function init(suggest) {
+    copyDir(
+        path.join(PACKAGE_PATH, '.githooks'),
+        path.join(ROOT_PATH, '.githooks'),
+        suggest
+    );
+
+    for (const [src, suggestionName] of CONFIG_FILES) {
+        copyFile(
+            path.join(PACKAGE_PATH, src),
+            path.join(ROOT_PATH, src),
+            suggest,
+            suggestionName
+        );
+    }
+
+    if (!suggest) {
+        console.log('Configuring Git to use .githooks ...');
+        execSync('git config core.hooksPath ".githooks"', { cwd: ROOT_PATH, stdio: 'inherit' });
+        console.log('... Done.');
+
+        console.log('Adding npm scripts ...');
+        execSync(`npm pkg set scripts['pretty:format']="npm run pretty:format:prettier && npm run pretty:format:pint"`, { cwd: ROOT_PATH, stdio: 'inherit' });
+        execSync(`npm pkg set scripts['pretty:format:prettier']="prettier --write ."`, { cwd: ROOT_PATH, stdio: 'inherit' });
+        execSync(`npm pkg set scripts['pretty:format:pint']="vendor/bin/pint"`, { cwd: ROOT_PATH, stdio: 'inherit' });
+        execSync(`npm pkg set scripts['pretty:check']="prettier --check ."`, { cwd: ROOT_PATH, stdio: 'inherit' });
+        console.log('... Done.');
+    }
+
+    if (suggest) {
+        console.log('\nSetup complete. Review the suggestion files, merge changes manually, then delete them.');
+    } else {
+        console.log('\nSetup complete. Review changes with git diff, then commit.');
+    }
+}
+
+function update(suggest) {
+    for (const [src, suggestionName] of CONFIG_FILES) {
+        const srcPath = path.join(PACKAGE_PATH, src);
+        const destPath = path.join(ROOT_PATH, src);
+
+        const srcContent = fs.readFileSync(srcPath, 'utf8');
+        const destContent = fs.existsSync(destPath) ? fs.readFileSync(destPath, 'utf8') : null;
+
+        if (srcContent === destContent) {
+            console.log(`${src} — no changes.`);
+            continue;
+        }
+
+        copyFile(srcPath, destPath, suggest, suggestionName);
+    }
+
+    const hooksDir = path.join(PACKAGE_PATH, '.githooks');
+    copyDir(hooksDir, path.join(ROOT_PATH, '.githooks'), suggest);
+
+    if (suggest) {
+        console.log('\nUpdate complete. Review the suggestion files, merge changes manually, then delete them.');
+    } else {
+        console.log('\nUpdate complete. Review changes with git diff, then commit.');
+    }
+}
+
+function postinstall() {
+    console.log('\n  Pretty Code installed.\n  Run \x1b[36mnpx pretty-code init\x1b[0m to finish setup.\n');
+}
+
+const command = process.argv[2];
+const suggest = process.argv.includes('--suggest');
+
+switch (command) {
+    case 'init':
+        init(suggest);
+        break;
+    case 'update':
+        update(suggest);
+        break;
+    case 'postinstall':
+        postinstall();
+        break;
+    default:
+        console.log('Usage: pretty-code <init|update> [--suggest]');
+        process.exit(1);
+}

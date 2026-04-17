@@ -1,16 +1,14 @@
 # Pretty Code
 
-**Pretty Code** is a githook-driven collection of formatter configurations for PHP, CSS, HTML, and JavaScript. It is designed for both **Roots Bedrock + Sage** and **Statamic** projects, both of which include Laravel Pint as a Composer dev dependency.
-
-When this package is updated, running `npm update` will pull in the latest configuration changes, minus anything you've overridden in your project.
+**Pretty Code** enforces consistent code formatting across all your projects automatically on commit. It provides a single source of truth for Prettier and Laravel Pint configurations, designed for **Roots Bedrock + Sage** and **Statamic** projects.
 
 ## Table of Contents
 
 1. [Requirements](#requirements)
-2. [Installation](#installation)
-3. [Initialization](#initialization)
-4. [Commands](#commands)
-5. [Formatters](#formatters)
+2. [Installation & Setup](#installation--setup)
+3. [Commands](#commands)
+4. [Updating](#updating)
+5. [PHP Formatting](#php-formatting)
 6. [Supported File Types](#supported-file-types)
 7. [Configuration Files](#configuration-files)
 8. [Customization per Project](#customization-per-project)
@@ -19,73 +17,113 @@ When this package is updated, running `npm update` will pull in the latest confi
 
 ## Requirements
 
-- Environments: OSX, Linux, WSL
-- PHP 8.1+
+- Environments: OSX, Linux, WSL, Windows
 - Node 20+
-- Laravel Pint (included in Bedrock/Sage and Statamic — no separate install needed)
+- PHP 8.1+ (for PHP formatting)
 
-## Installation
+## Installation & Setup
 
-> **Note:** The NPM package must be installed to use the githook-driven formatters. The Composer package is optional — it provides a `pretty:format:php` script shortcut and copies `pint.json` during init.
-
-This package is designed to work in Linux and OSX environments. Windows is not supported at this time.
-
-### NPM
+### Installation
 
 ```sh
 npm install --save-dev @lform/pretty-code
 ```
 
-### Composer (optional)
+After installing, the package prints a reminder to run the init command.
 
-```sh
-composer require --dev lform/pretty-code
-```
-
-## Initialization
-
-Once the package is installed, run the initialization command to scaffold the project.
-
-If a config file already exists, the init script will copy the package version alongside it as `{filename}.suggestions.{ext}` (e.g. `.prettierrc.suggestions.json`) for manual review and merging.
-
-Commit all new files and changes to git once everything is confirmed working.
-
-### NPM
+### Initialization
 
 ```sh
 npx pretty-code init
 ```
 
-Copies `.lintstagedrc.json`, `.prettierrc.json`, `.prettierignore`, `.editorconfig`, and `.githooks/` to the project root, configures `core.hooksPath`, and adds `pretty:format`, `pretty:check`, and `pretty:format:php` scripts to `package.json`.
+Run the init command to scaffold the project. It copies the following config files to the project root, configures git hooks, and adds `pretty:format`, `pretty:format:prettier`, `pretty:format:pint`, and `pretty:check` scripts to `package.json`:
 
-### Composer (optional)
+- `.prettierrc.json`, `.prettierignore`
+- `.lintstagedrc.json`
+- `.editorconfig`
+- `.githooks/`
+- `pint.json`
+
+Existing config files are overwritten — use `git diff` to review changes before committing. Pass `--suggest` to write new configs as suggestion files alongside your existing ones instead. In `--suggest` mode, Pretty Code does not update your git hooks path or rewrite `package.json` scripts:
 
 ```sh
-vendor/bin/pretty-code init
+npx pretty-code init --suggest
 ```
 
-Copies `pint.json` to the project root and adds a `pretty:format:php` script to `composer.json`.
+This writes:
+
+- `.lintstagedrc.suggestions.json`
+- `.prettierrc.suggestions.json`
+- `.prettierignore.suggestions`
+- `.editorconfig.suggestions`
+- `pint.suggestions.json`
+- `.githooks.suggestions/`
 
 ## Commands
 
 ```sh
-# Prettier — formats JS, CSS, HTML, Blade, Antlers, JSON, YAML, etc.
+# Run all formatters
 npm run pretty:format
+
+# Prettier only — JS, CSS, HTML, Blade, Antlers, JSON, YAML, etc.
+npm run pretty:format:prettier
+
+# Pint only — PHP files
+npm run pretty:format:pint
 
 # Check formatting without writing (useful in CI)
 npm run pretty:check
-
-# Pint — formats PHP files
-npm run pretty:format:php
-
-# Pint via Composer
-composer pretty:format:php
 ```
 
-## Formatters
+## Updating
 
-- [Pint](https://laravel.com/docs/pint) — PHP formatting (included in Bedrock/Sage and Statamic)
-- [Prettier](https://prettier.io/) — JS, CSS, HTML, Blade, Antlers, and more
+When a new version of Pretty Code is released, update the package then run:
+
+```sh
+npm update @lform/pretty-code
+npx pretty-code update
+```
+
+This overwrites your config files with the latest package versions. Use `git diff` to review and selectively revert any changes you want to keep. Pass `--suggest` to write updated configs as `.suggestions.*` files instead:
+
+```sh
+npx pretty-code update --suggest
+```
+
+## PHP Formatting
+
+### Laravel Pint (recommended)
+
+[Laravel Pint](https://laravel.com/docs/pint) is the recommended PHP formatter and is included by default in both **Roots Bedrock + Sage** and **Statamic** — no separate install needed for those projects. The `pint.json` config file is copied to your project root during `init`.
+
+### PHP CS Fixer (alternative)
+
+For projects that cannot use Laravel Pint, a `.php-cs-fixer.php` baseline configuration is included in the package as a reference. To use it:
+
+1. Install PHP CS Fixer:
+
+```sh
+composer require --dev friendsofphp/php-cs-fixer
+```
+
+2. Copy the baseline config to your project root:
+
+```sh
+cp node_modules/@lform/pretty-code/.php-cs-fixer.php .php-cs-fixer.php
+```
+
+3. Update `.lintstagedrc.json` to replace the Pint rule with PHP CS Fixer:
+
+```json
+"*.php": "vendor/bin/php-cs-fixer fix"
+```
+
+4. Update the `pretty:format:pint` script in `package.json`:
+
+```json
+"pretty:format:pint": "vendor/bin/php-cs-fixer fix"
+```
 
 ## Supported File Types
 
@@ -102,25 +140,21 @@ composer pretty:format:php
 
 ## Configuration Files
 
-| File | Copied by |
+| File | Description |
 |---|---|
-| `.prettierrc.json` | NPM init |
-| `.prettierignore` | NPM init |
-| `.lintstagedrc.json` | NPM init |
-| `.editorconfig` | NPM init |
-| `.githooks/` | NPM init |
-| `pint.json` | Composer init |
-| `.php-cs-fixer.php` | — (baseline reference, not copied) |
+| `.prettierrc.json` | Prettier configuration |
+| `.prettierignore` | Files excluded from Prettier |
+| `.lintstagedrc.json` | Pre-commit hook rules |
+| `.editorconfig` | Editor-wide formatting defaults |
+| `.githooks/` | Git hook scripts |
+| `pint.json` | Laravel Pint configuration |
+| `.php-cs-fixer.php` | PHP CS Fixer baseline (reference — copy manually if needed) |
 
 ## Customization Per Project
 
-To customize the formatters per project:
+To customize formatting for a specific project, copy the relevant config file from `node_modules/@lform/pretty-code/` to the project root and modify it as needed. Only copy what you need — copied files will no longer receive updates from the package manager.
 
-1. Copy the specific configuration files from the Pretty Code package root to the project root. Only copy the ones you need — these will no longer receive updates via the package manager.
-2. Modify the copied configuration files as needed.
-3. The formatters will automatically pick up configuration files in the project root directory.
-
-To undo customizations, delete the project-level config files and they will fall back to the package defaults.
+To undo a customization, delete the project-level config file and it will fall back to the package default.
 
 ## Troubleshooting
 
@@ -136,19 +170,10 @@ git config core.hooksPath ".git/hooks"
 git config core.hooksPath ".githooks"
 ```
 
-### OSX: `realpath` not found
-
-The initialization scripts require `realpath`, which may be missing on OSX. Install via Homebrew:
-
-```sh
-brew install coreutils
-```
-
 ## Uninstalling
 
 1. Delete any config files copied to the project root
 2. Delete the `.githooks` directory
 3. Run `git config core.hooksPath .git/hooks`
 4. Run `npm remove @lform/pretty-code`
-5. Run `composer remove lform/pretty-code` (if installed)
-6. Remove the `pretty:format`, `pretty:check`, and `pretty:format:php` scripts from `package.json` and `composer.json`
+5. Remove the `pretty:format`, `pretty:format:prettier`, `pretty:format:pint`, and `pretty:check` scripts from `package.json`
