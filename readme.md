@@ -1,8 +1,6 @@
 # Pretty Code
 
-**Pretty Code** is a githook-driven collection of formatter configurations for PHP, CSS, HTML, and JavaScript. It is designed for both **Roots Bedrock + Sage** and **Statamic** projects.
-
-When this package is updated, running `npm update` will pull in the latest configuration changes, minus anything you've overridden in your project.
+**Pretty Code** enforces consistent code formatting across all your projects automatically on commit. It provides a single source of truth for Prettier and Laravel Pint configurations, designed for **Roots Bedrock + Sage** and **Statamic** projects.
 
 ## Table of Contents
 
@@ -12,18 +10,17 @@ When this package is updated, running `npm update` will pull in the latest confi
 4. [Commands](#commands)
 5. [Updating](#updating)
 6. [PHP Formatting](#php-formatting)
-7. [Formatters](#formatters)
-8. [Supported File Types](#supported-file-types)
-9. [Configuration Files](#configuration-files)
-10. [Customization per Project](#customization-per-project)
-11. [Troubleshooting](#troubleshooting)
-12. [Uninstalling](#uninstalling)
+7. [Supported File Types](#supported-file-types)
+8. [Configuration Files](#configuration-files)
+9. [Customization per Project](#customization-per-project)
+10. [Troubleshooting](#troubleshooting)
+11. [Uninstalling](#uninstalling)
 
 ## Requirements
 
+- Environments: OSX, Linux, WSL, Windows
 - Node 20+
 - PHP 8.1+ (for PHP formatting)
-- Laravel Pint (included in Bedrock/Sage and Statamic)
 
 ## Installation
 
@@ -35,11 +32,17 @@ After installing, you'll see a reminder to run the init command.
 
 ## Initialization
 
-Run the init command to scaffold the project. It copies all configuration files to the project root, configures git hooks, and adds `pretty:format`, `pretty:format:prettier`, `pretty:format:pint`, and `pretty:check` scripts to `package.json`.
-
 ```sh
 npx pretty-code init
 ```
+
+Run the init command to scaffold the project. It copies the following config files to the project root, configures git hooks, and adds `pretty:format`, `pretty:format:prettier`, `pretty:format:pint`, and `pretty:check` scripts to `package.json`:
+
+- `.prettierrc.json`, `.prettierignore`
+- `.lintstagedrc.json`
+- `.editorconfig`
+- `.githooks/`
+- `pint.json`
 
 Existing config files are overwritten — use `git diff` to review changes before committing. Pass `--suggest` to write new configs as `.suggestions.*` files alongside your existing ones instead:
 
@@ -65,9 +68,10 @@ npm run pretty:check
 
 ## Updating
 
-When a new version of Pretty Code is released, update the package and then run:
+When a new version of Pretty Code is released, update the package then run:
 
 ```sh
+npm update @lform/pretty-code
 npx pretty-code update
 ```
 
@@ -105,16 +109,11 @@ cp node_modules/@lform/pretty-code/.php-cs-fixer.php .php-cs-fixer.php
 "*.php": "vendor/bin/php-cs-fixer fix"
 ```
 
-4. Update the `pretty:format:php` script in `package.json`:
+4. Update the `pretty:format:pint` script in `package.json`:
 
 ```json
-"pretty:format:php": "vendor/bin/php-cs-fixer fix"
+"pretty:format:pint": "vendor/bin/php-cs-fixer fix"
 ```
-
-## Formatters
-
-- [Pint](https://laravel.com/docs/pint) — PHP formatting (included in Bedrock/Sage and Statamic)
-- [Prettier](https://prettier.io/) — JS, CSS, HTML, Blade, Antlers, and more
 
 ## Supported File Types
 
@@ -143,13 +142,9 @@ cp node_modules/@lform/pretty-code/.php-cs-fixer.php .php-cs-fixer.php
 
 ## Customization Per Project
 
-To customize the formatters per project:
+To customize formatting for a specific project, copy the relevant config file from `node_modules/@lform/pretty-code/` to the project root and modify it as needed. Only copy what you need — copied files will no longer receive updates from the package manager.
 
-1. Copy the specific configuration files from the Pretty Code package root to the project root. Only copy the ones you need — these will no longer receive updates via the package manager.
-2. Modify the copied configuration files as needed.
-3. The formatters will automatically pick up configuration files in the project root directory.
-
-To undo customizations, delete the project-level config files and they will fall back to the package defaults.
+To undo a customization, delete the project-level config file and it will fall back to the package default.
 
 ## Troubleshooting
 
@@ -171,4 +166,4 @@ git config core.hooksPath ".githooks"
 2. Delete the `.githooks` directory
 3. Run `git config core.hooksPath .git/hooks`
 4. Run `npm remove @lform/pretty-code`
-5. Remove the `pretty:format`, `pretty:check`, and `pretty:format:php` scripts from `package.json`
+5. Remove the `pretty:format`, `pretty:format:prettier`, `pretty:format:pint`, and `pretty:check` scripts from `package.json`

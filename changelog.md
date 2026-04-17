@@ -21,6 +21,10 @@ All notable changes to this project will be documented in this file.
 ### Removed
 - Composer package (`lform/pretty-code`) — the npm package now handles everything
 - Bash init scripts (`bin/npm/pretty-code`, `bin/composer/pretty-code`)
+- Windows exclusion — all environments now supported
+
+### Fixed
+- Pre-commit hook rewritten from shell script to Node.js, adding Windows support without requiring WSL or Git Bash
 
 ---
 
