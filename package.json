@@ -24,8 +24,8 @@
 	"scripts": {
 		"pretty:format": "prettier --write .",
 		"pretty:check": "prettier --check .",
-        "pretty:format:php": "vendor/bin/pint"
-    },
+		"pretty:format:php": "vendor/bin/pint"
+	},
 	"bin": {
 		"pretty-code": "bin/npm/pretty-code"
 	},

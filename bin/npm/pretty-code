@@ -7,37 +7,53 @@ ROOT_PATH=$(realpath "${CURRENT_PATH}/../..")
 
 echo ROOT_PATH ${ROOT_PATH}
 
+copy_file() {
+	local src="$1"
+	local dest="$2"
+	local suggestion="$3"
+
+	if ! [ -f "${dest}" ]; then
+		echo -e "Copying $(basename ${dest}) ..."
+		cp "${src}" "${dest}"
+		echo -e "... Done."
+	else
+		echo -e "$(basename ${dest}) already exists, copying suggestion to $(basename ${suggestion}) ..."
+		cp "${src}" "${suggestion}"
+		echo -e "... Done."
+	fi
+}
+
 case "${1}" in
 	init)
 		if ! [ -d ${ROOT_PATH}/.githooks ]; then
 			echo -e "Copying Git Hooks to the .githooks directory ..."
 			cp -r ${PACKAGE_PATH}/.githooks "${ROOT_PATH}/"
 			echo -e "... Done."
-		fi
-
-		if ! [ -f ${ROOT_PATH}/.lintstagedrc.json ]; then
-			echo -e "Copying .lintstagedrc.json ..."
-			cp ${PACKAGE_PATH}/.lintstagedrc.json "${ROOT_PATH}/"
+		else
+			echo -e ".githooks already exists, copying suggestion to .githooks.suggestions ..."
+			cp -r ${PACKAGE_PATH}/.githooks "${ROOT_PATH}/.githooks.suggestions"
 			echo -e "... Done."
 		fi
 
-		if ! [ -f ${ROOT_PATH}/.prettierrc.json ]; then
-			echo -e "Copying .prettierrc.json ..."
-			cp ${PACKAGE_PATH}/.prettierrc.json "${ROOT_PATH}/"
-			echo -e "... Done."
-		fi
+		copy_file \
+			"${PACKAGE_PATH}/.lintstagedrc.json" \
+			"${ROOT_PATH}/.lintstagedrc.json" \
+			"${ROOT_PATH}/.lintstagedrc.suggestions.json"
 
-		if ! [ -f ${ROOT_PATH}/.prettierignore ]; then
-			echo -e "Copying .prettierignore ..."
-			cp ${PACKAGE_PATH}/.prettierignore "${ROOT_PATH}/"
-			echo -e "... Done."
-		fi
+		copy_file \
+			"${PACKAGE_PATH}/.prettierrc.json" \
+			"${ROOT_PATH}/.prettierrc.json" \
+			"${ROOT_PATH}/.prettierrc.suggestions.json"
 
-		if ! [ -f ${ROOT_PATH}/.editorconfig ]; then
-			echo -e "Copying .editorconfig ..."
-			cp ${PACKAGE_PATH}/.editorconfig "${ROOT_PATH}/"
-			echo -e "... Done."
-		fi
+		copy_file \
+			"${PACKAGE_PATH}/.prettierignore" \
+			"${ROOT_PATH}/.prettierignore" \
+			"${ROOT_PATH}/.prettierignore.suggestions"
+
+		copy_file \
+			"${PACKAGE_PATH}/.editorconfig" \
+			"${ROOT_PATH}/.editorconfig" \
+			"${ROOT_PATH}/.editorconfig.suggestions"
 
 		echo -e "Setting up Git Hooks to read from the .githooks directory ..."
 		git config core.hooksPath ".githooks"

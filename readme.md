@@ -41,6 +41,8 @@ composer require --dev lform/pretty-code
 
 Once the package is installed, run the initialization commands to scaffold the project.
 
+If a config file already exists, the init script will copy the package version alongside it as `{filename}.suggestions.{ext}` (e.g. `.prettierrc.suggestions.json`) for manual review and merging.
+
 Commit all new files and changes to git once everything is confirmed working.
 
 ### NPM Initialization

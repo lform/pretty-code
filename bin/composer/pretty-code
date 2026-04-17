@@ -1,13 +1,32 @@
 #!/bin/bash
 
+# Current paths resolve from `vendor/.bin`
+CURRENT_PATH=$(dirname $0)
+PACKAGE_PATH=$(realpath "${CURRENT_PATH}/../lform/pretty-code")
+ROOT_PATH=$(realpath "${CURRENT_PATH}/../../..")
+
+copy_file() {
+	local src="$1"
+	local dest="$2"
+	local suggestion="$3"
+
+	if ! [ -f "${dest}" ]; then
+		echo -e "Copying $(basename ${dest}) ..."
+		cp "${src}" "${dest}"
+		echo -e "... Done."
+	else
+		echo -e "$(basename ${dest}) already exists, copying suggestion to $(basename ${suggestion}) ..."
+		cp "${src}" "${suggestion}"
+		echo -e "... Done."
+	fi
+}
+
 case "${1}" in
 	init)
-
-		if ! [ -f ${ROOT_PATH}/pint.json ]; then
-			echo -e "Copying pint.json ..."
-			cp ${PACKAGE_PATH}/pint.json "${ROOT_PATH}/"
-			echo -e "... Done."
-		fi
+		copy_file \
+			"${PACKAGE_PATH}/pint.json" \
+			"${ROOT_PATH}/pint.json" \
+			"${ROOT_PATH}/pint.suggestions.json"
 
 		echo -e "Setting up Composer scripts..."
 		composer config scripts."pretty:format:php" "vendor/bin/pint"

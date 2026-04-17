@@ -15,7 +15,9 @@ trim_trailing_whitespace = false
 
 [*.{html,htm,blade.php,antlers.html,antlers.php}]
 indent_size = 2
+tab_width = 2
 
 [*.{yml,yaml}]
 indent_style = space
 indent_size = 2
+tab_width = 2
