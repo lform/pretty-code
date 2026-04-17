@@ -1,9 +1,21 @@
 {
-	"preset": "laravel",
-	"rules": {
-		"ordered_imports": { "sort_algorithm": "alpha" },
-		"not_operator_with_successor_space": true,
-		"no_unused_imports": true,
-		"single_quote": true
-	}
+    "preset": "per",
+    "exclude": [
+        "web/wp",
+        "web/app/mu-plugins/bedrock-disallow-indexing",
+        "web/app/plugins",
+        "web/app/themes/twentytwentyfive",
+        "web/app/themes/twentytwentysix",
+        "web/app/themes/twentytwentyseven"
+    ],
+    "rules": {
+        "ordered_imports": {
+            "sort_algorithm": "alpha"
+        },
+        "not_operator_with_successor_space": true,
+        "no_unused_imports": true,
+        "single_quote": true,
+        "yoda_style": false,
+        "no_alternative_syntax": true
+    }
 }

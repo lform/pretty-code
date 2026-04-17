@@ -2,16 +2,21 @@
 
 case "${1}" in
 	init)
-        echo -e "Setting up Composer scripts..."
-		composer config scripts."pretty:format" "vendor/bin/php-cs-fixer fix --verbose --config vendor/lform/pretty-code/.php-cs-fixer.php"
-		echo -e "Added Composer script: format"
-		# composer config scripts."pretty:lint" "vendor/bin/phpstan analyse -c vendor/lform/pretty-code/phpstan.neon"
-		# echo -e "Added Composer script: lint"
+
+		if ! [ -f ${ROOT_PATH}/pint.json ]; then
+			echo -e "Copying pint.json ..."
+			cp ${PACKAGE_PATH}/pint.json "${ROOT_PATH}/"
+			echo -e "... Done."
+		fi
+
+		echo -e "Setting up Composer scripts..."
+		composer config scripts."pretty:format:php" "vendor/bin/pint"
+		echo -e "Added Composer script: pretty:format:php"
 		echo -e "... Done."
 
-        echo "Setup complete."
-        ;;
+		echo "Setup complete."
+		;;
 	*)
 		echo -e "Usage: pretty-code init"
-    	;;
+		;;
 esac

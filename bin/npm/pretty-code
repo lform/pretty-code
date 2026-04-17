@@ -3,14 +3,13 @@
 # Current paths resolve from `node_modules/.bin`
 CURRENT_PATH=$(dirname $0)
 PACKAGE_PATH=$(realpath "${CURRENT_PATH}/../@lform/pretty-code")
-BIN_PATH=${PACKAGE_PATH}/bin/npm
 ROOT_PATH=$(realpath "${CURRENT_PATH}/../..")
 
 echo ROOT_PATH ${ROOT_PATH}
 
 case "${1}" in
 	init)
-        if ! [ -d ${ROOT_PATH}/.githooks ]; then
+		if ! [ -d ${ROOT_PATH}/.githooks ]; then
 			echo -e "Copying Git Hooks to the .githooks directory ..."
 			cp -r ${PACKAGE_PATH}/.githooks "${ROOT_PATH}/"
 			echo -e "... Done."
@@ -22,26 +21,37 @@ case "${1}" in
 			echo -e "... Done."
 		fi
 
+		if ! [ -f ${ROOT_PATH}/.prettierrc.json ]; then
+			echo -e "Copying .prettierrc.json ..."
+			cp ${PACKAGE_PATH}/.prettierrc.json "${ROOT_PATH}/"
+			echo -e "... Done."
+		fi
+
+		if ! [ -f ${ROOT_PATH}/.prettierignore ]; then
+			echo -e "Copying .prettierignore ..."
+			cp ${PACKAGE_PATH}/.prettierignore "${ROOT_PATH}/"
+			echo -e "... Done."
+		fi
+
 		if ! [ -f ${ROOT_PATH}/.editorconfig ]; then
 			echo -e "Copying .editorconfig ..."
 			cp ${PACKAGE_PATH}/.editorconfig "${ROOT_PATH}/"
 			echo -e "... Done."
 		fi
 
-        echo -e "Setting up Git Hooks to read from the .githooks directory ..."
-        git config core.hooksPath ".githooks"
-        echo -e "... Done."
+		echo -e "Setting up Git Hooks to read from the .githooks directory ..."
+		git config core.hooksPath ".githooks"
+		echo -e "... Done."
 
-        echo -e "Setting up NPM scripts..."
-        npm pkg set scripts['pretty:format']="npx prettier --config node_modules/@lform/pretty-code/.prettierrc.json --ignore-path node_modules/@lform/pretty-code/.prettierignore --write ."
-		npm pkg set scripts['pretty:lint:css']="npx stylelint --config node_modules/@lform/pretty-code/stylelint.json --ignore-path node_modules/@lform/pretty-code/stylelintignore --fix ."
-        npm pkg set scripts['pretty:lint:js']="npx eslint -c node_modules/@lform/pretty-code/.eslintrc.json --fix ."
-        npm pkg set scripts['pretty:lint:html']="npx linthtml --config node_modules/@lform/pretty-code/.linthtmlrc.json"
-        echo -e "... Done."
+		echo -e "Setting up NPM scripts..."
+		npm pkg set scripts['pretty:format']="prettier --write ."
+		npm pkg set scripts['pretty:check']="prettier --check ."
+		npm pkg set scripts['pretty:format:php']="vendor/bin/pint"
+		echo -e "... Done."
 
-        echo "Setup complete."
-        ;;
+		echo "Setup complete."
+		;;
 	*)
 		echo -e "Usage: pretty-code init"
-    	;;
+		;;
 esac
