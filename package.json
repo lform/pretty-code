@@ -22,6 +22,7 @@
 		"url": "git+https://github.com/lform/pretty-code.git"
 	},
 	"scripts": {
+		"postinstall": "node bin/pretty-code postinstall",
 		"pretty:format": "npm run pretty:format:prettier && npm run pretty:format:pint",
 		"pretty:format:prettier": "prettier --write .",
 		"pretty:format:pint": "vendor/bin/pint",
@@ -30,6 +31,18 @@
 	"bin": {
 		"pretty-code": "bin/pretty-code"
 	},
+	"files": [
+		".editorconfig",
+		".githooks",
+		".lintstagedrc.json",
+		".php-cs-fixer.php",
+		".prettierignore",
+		".prettierrc.json",
+		"bin",
+		"changelog.md",
+		"pint.json",
+		"readme.md"
+	],
 	"engines": {
 		"node": ">=20.0.0"
 	}

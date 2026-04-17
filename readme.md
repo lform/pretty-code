@@ -29,7 +29,7 @@
 npm install --save-dev @lform/pretty-code
 ```
 
-After installing, you'll see a reminder to run the init command.
+After installing, the package prints a reminder to run the init command.
 
 ### Initialization
 
@@ -45,11 +45,20 @@ Run the init command to scaffold the project. It copies the following config fil
 - `.githooks/`
 - `pint.json`
 
-Existing config files are overwritten — use `git diff` to review changes before committing. Pass `--suggest` to write new configs as `.suggestions.*` files alongside your existing ones instead:
+Existing config files are overwritten — use `git diff` to review changes before committing. Pass `--suggest` to write new configs as suggestion files alongside your existing ones instead. In `--suggest` mode, Pretty Code does not update your git hooks path or rewrite `package.json` scripts:
 
 ```sh
 npx pretty-code init --suggest
 ```
+
+This writes:
+
+- `.lintstagedrc.suggestions.json`
+- `.prettierrc.suggestions.json`
+- `.prettierignore.suggestions`
+- `.editorconfig.suggestions`
+- `pint.suggestions.json`
+- `.githooks.suggestions/`
 
 ## Commands
 
