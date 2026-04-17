@@ -5,8 +5,6 @@ CURRENT_PATH=$(dirname $0)
 PACKAGE_PATH=$(realpath "${CURRENT_PATH}/../@lform/pretty-code")
 ROOT_PATH=$(realpath "${CURRENT_PATH}/../..")
 
-echo ROOT_PATH ${ROOT_PATH}
-
 copy_file() {
 	local src="$1"
 	local dest="$2"

@@ -10,9 +10,12 @@ When this package is updated, running `npm update` will pull in the latest confi
 2. [Installation](#installation)
 3. [Initialization](#initialization)
 4. [Commands](#commands)
-5. [Customization per Project](#customization-per-project)
-6. [Troubleshooting](#troubleshooting)
-7. [Uninstalling](#uninstalling)
+5. [Formatters](#formatters)
+6. [Supported File Types](#supported-file-types)
+7. [Configuration Files](#configuration-files)
+8. [Customization per Project](#customization-per-project)
+9. [Troubleshooting](#troubleshooting)
+10. [Uninstalling](#uninstalling)
 
 ## Requirements
 

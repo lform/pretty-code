@@ -8,7 +8,6 @@
 	"htmlWhitespaceSensitivity": "css",
 	"bracketSameLine": true,
 	"proseWrap": "preserve",
-	"jsxSingleQuote": false,
 	"overrides": [
 		{
 			"files": ["*.html", "*.htm"],
@@ -37,8 +36,7 @@
 			"files": ["*.yaml", "*.yml"],
 			"options": {
 				"useTabs": false,
-				"tabWidth": 2,
-				"singleQuote": false
+				"tabWidth": 2
 			}
 		}
 	],
