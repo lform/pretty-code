@@ -1,17 +1,41 @@
 #!/bin/bash
 
+# Current paths resolve from `vendor/.bin`
+CURRENT_PATH=$(dirname $0)
+PACKAGE_PATH=$(realpath "${CURRENT_PATH}/../lform/pretty-code")
+ROOT_PATH=$(realpath "${CURRENT_PATH}/../../..")
+
+copy_file() {
+	local src="$1"
+	local dest="$2"
+	local suggestion="$3"
+
+	if ! [ -f "${dest}" ]; then
+		echo -e "Copying $(basename ${dest}) ..."
+		cp "${src}" "${dest}"
+		echo -e "... Done."
+	else
+		echo -e "$(basename ${dest}) already exists, copying suggestion to $(basename ${suggestion}) ..."
+		cp "${src}" "${suggestion}"
+		echo -e "... Done."
+	fi
+}
+
 case "${1}" in
 	init)
-        echo -e "Setting up Composer scripts..."
-		composer config scripts."pretty:format" "vendor/bin/php-cs-fixer fix --verbose --config vendor/lform/pretty-code/.php-cs-fixer.php"
-		echo -e "Added Composer script: format"
-		# composer config scripts."pretty:lint" "vendor/bin/phpstan analyse -c vendor/lform/pretty-code/phpstan.neon"
-		# echo -e "Added Composer script: lint"
+		copy_file \
+			"${PACKAGE_PATH}/pint.json" \
+			"${ROOT_PATH}/pint.json" \
+			"${ROOT_PATH}/pint.suggestions.json"
+
+		echo -e "Setting up Composer scripts..."
+		composer config scripts."pretty:format:php" "vendor/bin/pint"
+		echo -e "Added Composer script: pretty:format:php"
 		echo -e "... Done."
 
-        echo "Setup complete."
-        ;;
+		echo "Setup complete."
+		;;
 	*)
 		echo -e "Usage: pretty-code init"
-    	;;
+		;;
 esac
