@@ -1,8 +1,8 @@
 # Pretty Code
 
-**Pretty Code** is a githook-driven collection of linter & formatter configurations for PHP, CSS, HTML, and JavaScript. It is also designed for per-project customization, which is useful when dealing with older, unconventional, or problematic code bases.
+**Pretty Code** is a githook-driven collection of formatter configurations for PHP, CSS, HTML, and JavaScript. It is designed for both **Roots Bedrock + Sage** and **Statamic** projects, both of which include Laravel Pint as a Composer dev dependency.
 
-When this package is updated, running `composer update` or `npm update` will pull in the latest configuration changes, minus anything you've overridden in your project. This allows for easy updates to the configuration without having to manually update files.
+When this package is updated, running `npm update` will pull in the latest configuration changes, minus anything you've overridden in your project.
 
 ### Table of Contents
 
@@ -15,201 +15,143 @@ When this package is updated, running `composer update` or `npm update` will pul
 ## Requirements
 
 * Environments: OSX, Linux, WSL
-* PHP 7.4+
+* PHP 8.1+
 * Node 20+
+* Laravel Pint (included in Bedrock/Sage and Statamic — no separate install needed)
 
 ## Installation
 
-> IMPORTANT: The NPM part of the package must be installed to use the githook-driven linters and formatters. That is the case for PHP as well, regardless of whether you are using the Composer package.
+> IMPORTANT: The NPM part of the package must be installed to use the githook-driven formatters. The Composer package is optional — it provides a `format:php` script shortcut and the `.php-cs-fixer.php` baseline config.
 
 This package is designed to work in Linux and OSX environments. Windows is not supported at this time.
 
 ### NPM Installation
 
-This installs the frontend part of the package as well as the githook-driven automations.
-
 ```sh
 npm install --save-dev @lform/pretty-code
 ```
 
-### Composer Installation
-
-This installs the PHP part of the package.
+### Composer Installation (optional)
 
 ```sh
 composer require --dev lform/pretty-code
 ```
 
-### Laravel & PHPStan
-
-For Laravel based projects, install Larastan, which will configure PHPStan for use in Laravel projects.
-
-* [Larastan Documentation & Repo](https://github.com/larastan/larastan)
-
-#### Installing Larastan
-
-1. Install Larastan (refer to documentation) via Composer
-2. Create a `phpstan.neon` file in the project root or copy the one from `pretty-code`
-3. Edit the `.lintstagedrc.json` file and remove the preset configuration path from `phpstan`, so it uses the project root configuration by default.
-4. Add the larastan extension to the `phpstan.neon` file in the project root:
-
-     includes:
-         - vendor/larastan/larastan/extension.neon
 ## Initialization
 
-Once the packages are installed, the package has to be initialized via `npm` to do a few things:
+Once the package is installed, run the initialization commands to scaffold the project.
 
-1. Copy a `.lintstagedrc.json` config to the project root, if it does not already exist
-2. Copy a preconfigured `.githooks` directory to the project root to trigger the git automations. If the directory already exists, the initialization script will not overwrite it.
-3. Copy a `.editorconfig` config to the project root, if it does not already exist
-4. Configure the project git repo `core.hooksPath` to use the new `.githooks` directory.
-5. Add new scripts in `package.json` to run the linters and formatters manually.
-
-
-For Composer, initialization will just add the new scripts to `composer.json` to run the linters and formatters manually.
-
-Afterward, these new files & changes should be committed to git once everything is confirmed working. Read below for how to initialize the package.
+Commit all new files and changes to git once everything is confirmed working.
 
 ### NPM Initialization
 
 ```sh
 npx pretty-code init
 ```
-### Composer Initialization
+
+### Composer Initialization (optional)
 
 ```sh
 vendor/bin/pretty-code init
 ```
+
+### Initialization Steps (Manual Alternative)
+
+1. Copy `.lintstagedrc.json` to the project root (if it doesn't already exist)
+2. Copy `.prettierrc.json` to the project root (if it doesn't already exist)
+3. Copy `.prettierignore` to the project root (if it doesn't already exist)
+4. Copy `pint.json` to the project root (if it doesn't already exist)
+5. Copy `.editorconfig` to the project root (if it doesn't already exist)
+6. Copy the `.githooks` directory to the project root (if it doesn't already exist)
+7. Configure the project git repo `core.hooksPath` to use the `.githooks` directory
+8. Add `pretty:format`, `pretty:check`, and `pretty:format:php` scripts to `package.json`
+
+For Composer, initialization adds a `pretty:format:php` script shortcut to `composer.json`.
+
 ### Troubleshooting
-
-#### PHPStan Pains
-
-PHPStan is very helpful but can be a source of aggravation on projects that have an older code-base or used unconventional approaches. There are a few things that can be done to address these issues:
-
-1. If it's a Laravel project, install Larastan (instructions are above)
-2. Exclude files from reporting in the configuration or with inline comments. For errors that should be ignored, add them to the configuration.
-3. Lower the reporting level in the configuration
-4. Generate a baseline report, so you can focus on new code instead of trying to fix old code. Commit the baseline report to the project repo.
-
-If all else fails, PHPStan can be disabled but this should be avoided except when necessary.
 
 #### Disconnecting & Reconnecting the Automations
 
-If you're having problems with the automated git hooks and need to disable or re-enable them:
+If you need to disable or re-enable the automated git hooks:
 
 ```sh
-# Disable automations, set the git hooks to the default:
+# Disable automations:
 git config core.hooksPath ".git/hooks"
 
-# Re-enable automations, set the git hooks to our custom hooks directory:
+# Re-enable automations:
 git config core.hooksPath ".githooks"
 ```
+
 #### OS Issues
 
-**NOTE**: On OSX, you may also need to install `coreutils` since the initialization scripts use the `realpath` command. If you see errors related to this, run the following:
+On OSX, you may need to install `coreutils` since the initialization scripts use the `realpath` command:
 
 ```sh
 brew install coreutils
 ```
+
 ### Uninstalling
 
-To remove the package:
-
-1. Delete any custom linter or formatter configs from the project root
+1. Delete any custom formatter configs copied to the project root
 2. Delete the `.githooks` directory
 3. Run `git config core.hooksPath .git/hooks`
 4. Run `npm remove @lform/pretty-code`
-5. Run `composer remove lform/pretty-code`
-6. Remove the `pretty` scripts from `composer.json` and `package.json`
+5. Run `composer remove lform/pretty-code` (if installed)
+6. Remove the `format` scripts from `package.json` and `composer.json`
 
-## Linters & Formatters
+## Formatters
 
-### Linters
-
-- [ESLint](https://eslint.org/)
-- [linthtml](https://linthtml.vercel.app/)
-- [PHPStan](https://phpstan.org/)
-- [StyleLint](https://stylelint.io/)
-
-### Formatters
-
-- [PHP CS Fixer](https://cs.symfony.com/)
-  - Configured for PHP 8.3, for 7.4 support, copy the configuration into your project and customize it.
-- [Prettier](https://prettier.io/)
+- [Pint](https://laravel.com/docs/pint) — PHP formatting (included in Bedrock/Sage and Statamic)
+- [Prettier](https://prettier.io/) — JS, CSS, HTML, Blade, Antlers, and more
 
 ## Supported File Types
 
-> L = Linted, F = Formatted
->
-
-- antlers.html (F)
-- antlers.php (F)
-- blade.php (F)
-- css (LF)-
-- html, htm (LF)
-- js (LF)
-- jsx (LF)
-- json (F)
-- pcss (LF)
-- php (LF)
-- scss (LF)
-- ts (LF)
-- tsx (LF)
-- twig (F)
-- yaml, yml (LF)
+- antlers.html
+- antlers.php
+- blade.php
+- css
+- html, htm
+- js
+- jsx
+- json
+- pcss
+- php
+- scss
+- ts
+- tsx
+- yaml, yml
 
 ## Commands
 
-### Formatters
+### Format
 
 ```sh
-# Runs Prettier (css, scss, pcss, js, jsx, ts, tsx, json, html, htm, twig, blade.php, yml, yaml)
-npm run pretty:format <path>
+# Prettier — formats JS, CSS, HTML, Blade, Antlers, JSON, YAML, etc.
+npm run pretty:format
 
-# Runs PHP-CS-Fixer (php)
-composer pretty:format <path>
+# Check formatting without writing (useful in CI)
+npm run pretty:check
+
+# Pint — formats PHP files
+npm run pretty:format:php
+
+# Pint via Composer
+composer pretty:format:php
 ```
-### Linters
 
-```sh
-# Runs StyleLint (css, scss, pcss)
-npm run pretty:lint:css <path>
-
-# Runs ESLint (js, jsx, ts, tsx, json)
-npm run pretty:lint:js <path>
-
-# Runs linthtml (html, htm)
-npm run pretty:lint:html <path>
-
-# Runs PHPStan (php)
-composer pretty:lint <path>
-```
 ## Customization Per Project
 
-To customize the linters and formatters per project:
+To customize the formatters per project:
 
-1. Copy the specific configuration files that need to be modified from the Pretty Code package root to the project root. Only copy the configurations that you need, these custom configs will no longer get updated via the package management system.
+1. Copy the specific configuration files from the Pretty Code package root to the project root. Only copy the ones you need — these will no longer receive updates via the package manager.
 2. Modify the copied configuration files as needed.
-3. Open the `.lintstagedrc.json` file and remove the explicit config-file paths or ignore-file paths from the respective linters or formatters being adjusted.
-4. Do the same thing for the `package.json` and `composer.json` scripts as applicable.
-5. The linters and formatters with project-based configs will automatically use the configuration files from the project root directory.
+3. The formatters will automatically pick up configuration files in the project root directory.
 
-To undo these changes, just delete the configurations and restore the original scripts by referencing the package's `package.json` and `composer.json` files.
+To undo customizations, delete the project-level config files and they will fall back to the package defaults.
 
 ## Configuration Files
 
-- `.eslintrc.json`
-- `.eslintignore (if applicable)`
-- `.linthtmlrc.json`
 - `.prettierrc.json`
 - `.prettierignore`
-- `.stylelint.json`
-- `.stylelintignore`
-- `phpstan.neon`
-
-## Todos
-
-1. Add github workflows
-2. Add tailwind linter
-3. Add antlers formatter + linter
-4. Add windows support (convert bin scripts to node.js)
+- `pint.json`
+- `.php-cs-fixer.php` (baseline reference — not used by default, Pint is preferred)
