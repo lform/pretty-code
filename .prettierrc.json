@@ -11,15 +11,26 @@
 	"jsxSingleQuote": false,
 	"overrides": [
 		{
+			"files": ["*.html", "*.htm"],
+			"options": {
+				"useTabs": false,
+				"tabWidth": 2
+			}
+		},
+		{
 			"files": ["*.blade.php"],
 			"options": {
-				"parser": "blade"
+				"parser": "blade",
+				"useTabs": false,
+				"tabWidth": 2
 			}
 		},
 		{
 			"files": ["*.antlers.html", "*.antlers.php"],
 			"options": {
-				"parser": "antlers"
+				"parser": "antlers",
+				"useTabs": false,
+				"tabWidth": 2
 			}
 		},
 		{
