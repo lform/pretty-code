@@ -1,17 +1,14 @@
 {
 	"**/!(*.blade|*.antlers).php": [
-		"vendor/bin/php-cs-fixer fix --verbose --config node_modules/@lform/pretty-code/.php-cs-fixer.php"
+		"vendor/bin/pint"
 	],
-	"*.{js,jsx,ts,tsx}": [
-		"npx prettier --config node_modules/@lform/pretty-code/.prettierrc.json --ignore-path node_modules/@lform/pretty-code/.prettierignore --write"
+	"*.{js,jsx,ts,tsx,css,scss,pcss,json,yml,yaml}": [
+		"prettier --write"
 	],
-	"**/!(*.antlers).{,html,htm}": [
-		"npx prettier --config node_modules/@lform/pretty-code/.prettierrc.json --ignore-path node_modules/@lform/pretty-code/.prettierignore --write"
+	"*.{html,htm}": [
+		"prettier --write"
 	],
-	"*.{css,scss,pcss}": [
-		"npx prettier --config node_modules/@lform/pretty-code/.prettierrc.json --ignore-path node_modules/@lform/pretty-code/.prettierignore --write"
-	],
-	"*.{antlers.php,blade.php,antlers.html,json,yml,yaml,twig}": [
-		"npx prettier --config node_modules/@lform/pretty-code/.prettierrc.json --ignore-path node_modules/@lform/pretty-code/.prettierignore --write"
+	"*.{blade.php,antlers.html,antlers.php}": [
+		"prettier --write"
 	]
 }
