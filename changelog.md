@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file.
 
+## [2.0.2] — 2026-04-20
+
+### Changed
+
+- Prettier now defaults to tabs for supported code files, with 2-space tab width overrides retained for HTML, Blade, and Antlers
+
+### Fixed
+
+- YAML formatting now explicitly stays on spaces so the global tab setting does not break `.yml` and `.yaml` files
+
+---
+
 ## [2.0.1] — 2026-04-17
 
 ### Added
