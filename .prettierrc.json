@@ -1,6 +1,7 @@
 {
 	"semi": true,
 	"singleQuote": false,
+	"useTabs": true,
 	"tabWidth": 4,
 	"printWidth": 120,
 	"trailingComma": "es5",
@@ -12,7 +13,6 @@
 		{
 			"files": ["*.html", "*.htm"],
 			"options": {
-				"useTabs": false,
 				"tabWidth": 2
 			}
 		},
@@ -20,7 +20,6 @@
 			"files": ["*.blade.php"],
 			"options": {
 				"parser": "blade",
-				"useTabs": false,
 				"tabWidth": 2
 			}
 		},
@@ -28,7 +27,6 @@
 			"files": ["*.antlers.html", "*.antlers.php"],
 			"options": {
 				"parser": "antlers",
-				"useTabs": false,
 				"tabWidth": 2
 			}
 		},
@@ -40,9 +38,5 @@
 			}
 		}
 	],
-	"plugins": [
-		"prettier-plugin-antlers",
-		"prettier-plugin-blade",
-		"prettier-plugin-tailwindcss"
-	]
+	"plugins": ["prettier-plugin-antlers", "prettier-plugin-blade", "prettier-plugin-tailwindcss"]
 }
