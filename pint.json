@@ -1,6 +1,7 @@
 {
 	"preset": "per",
 	"rules": {
+		"indentation_type": "tab",
 		"ordered_imports": {
 			"sort_algorithm": "alpha"
 		},

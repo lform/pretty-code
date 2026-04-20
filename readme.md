@@ -127,28 +127,28 @@ cp node_modules/@lform/pretty-code/.php-cs-fixer.php .php-cs-fixer.php
 
 ## Supported File Types
 
-| Extension | Tool |
-|---|---|
-| `php` | Pint |
-| `blade.php` | Prettier |
+| Extension                     | Tool     |
+| ----------------------------- | -------- |
+| `php`                         | Pint     |
+| `blade.php`                   | Prettier |
 | `antlers.html`, `antlers.php` | Prettier |
-| `js`, `jsx`, `ts`, `tsx` | Prettier |
-| `css`, `scss`, `pcss` | Prettier |
-| `html`, `htm` | Prettier |
-| `json` | Prettier |
-| `yaml`, `yml` | Prettier |
+| `js`, `jsx`, `ts`, `tsx`      | Prettier |
+| `css`, `scss`, `pcss`         | Prettier |
+| `html`, `htm`                 | Prettier |
+| `json`                        | Prettier |
+| `yaml`, `yml`                 | Prettier |
 
 ## Configuration Files
 
-| File | Description |
-|---|---|
-| `.prettierrc.json` | Prettier configuration |
-| `.prettierignore` | Files excluded from Prettier |
-| `.lintstagedrc.json` | Pre-commit hook rules |
-| `.editorconfig` | Editor-wide formatting defaults |
-| `.githooks/` | Git hook scripts |
-| `pint.json` | Laravel Pint configuration |
-| `.php-cs-fixer.php` | PHP CS Fixer baseline (reference — copy manually if needed) |
+| File                 | Description                                                 |
+| -------------------- | ----------------------------------------------------------- |
+| `.prettierrc.json`   | Prettier configuration                                      |
+| `.prettierignore`    | Files excluded from Prettier                                |
+| `.lintstagedrc.json` | Pre-commit hook rules                                       |
+| `.editorconfig`      | Editor-wide formatting defaults                             |
+| `.githooks/`         | Git hook scripts                                            |
+| `pint.json`          | Laravel Pint configuration                                  |
+| `.php-cs-fixer.php`  | PHP CS Fixer baseline (reference — copy manually if needed) |
 
 ## Customization Per Project
 

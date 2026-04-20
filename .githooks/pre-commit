@@ -1,4 +1,4 @@
 #!/usr/bin/env node
 
-const { execSync } = require('child_process');
-execSync('npx lint-staged', { stdio: 'inherit' });
+const { execSync } = require("child_process");
+execSync("npx lint-staged", { stdio: "inherit" });
